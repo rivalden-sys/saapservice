@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://saapservice.netlify.app/sitemap.xml

@@ -1,0 +1,1402 @@
+<!DOCTYPE html><html lang="pl" style="scroll-behavior: smooth;"><head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://saapservice.netlify.app/">
+<meta property="og:title" content="SAAP Service — Premium Serwis Samochodowy Wrocław">
+<meta property="og:description" content="Mechanika, diagnostyka, wulkanizacja. Umów wizytę: 576 196 906. ul. Przesmyckiego 25, Wrocław.">
+<meta property="og:image" content="https://saapservice.netlify.app/assets/images/gallery/mercedes-g63-warsztat.jpg">
+<meta property="og:url" content="https://saapservice.netlify.app/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SAAP Service — Premium Serwis Samochodowy Wrocław">
+<meta name="twitter:description" content="Mechanika, diagnostyka, wulkanizacja. Umów wizytę: 576 196 906.">
+<meta name="twitter:image" content="https://saapservice.netlify.app/assets/images/gallery/mercedes-g63-warsztat.jpg">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>SAAP Service — Premium Serwis Samochodowy Wrocław</title>
+<meta name="description" content="SAAP Service – premium serwis samochodowy we Wrocławiu. Mechanika, diagnostyka, wulkanizacja. ul. Przesmyckiego 25. Tel: 576 196 906">
+<link rel="icon" href="assets/images/logo/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Space+Mono:wght@400;700&amp;family=Barlow:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+/* ── RESET & TOKENS ─────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#0A0A0A;
+  --dark:#0d0d0d;
+  --card:#121212;
+  --card2:#161616;
+  --red:#8B0000;
+  --red-bright:#B00000;
+  --red-dim:#6B0000;
+  --red-glow:rgba(139,0,0,0.45);
+  --red-glow2:rgba(139,0,0,0.12);
+  --red-border:rgba(139,0,0,0.22);
+  --white:#FAFAFA;
+  --gray:#888;
+  --gray2:#333;
+  --gray3:#555;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;}
+@media(pointer:coarse){body{cursor:auto;}}
+
+
+/* Skip link for accessibility */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.skip-link{position:absolute;top:-40px;left:0;background:var(--red);color:var(--white);padding:8px 16px;font-family:'Space Mono',monospace;font-size:12px;z-index:10000;transition:top .3s;}
+.skip-link:focus{top:0;}
+/* Focus styles */
+a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:2px;}
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}.ticker-wrap:hover .ticker-track{animation-play-state:paused;}
+.ticker-track{animation:none;}}
+/* ── GRAIN OVERLAY ─────────────────────────────────────────── */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.025;pointer-events:none;z-index:9997;
+}
+
+/* ── CURSOR ────────────────────────────────────────────────── */
+#cursor{position:fixed;width:10px;height:10px;border:1px solid var(--red);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .18s,height .18s,background .18s,border-color .18s;}
+#cursor.big{width:40px;height:40px;background:rgba(139,0,0,0.08);border-color:rgba(139,0,0,0.6);}
+@media(pointer:coarse){#cursor{display:none;}}
+
+/* ── NAV ───────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:28px 64px;
+  transition:all .4s cubic-bezier(.4,0,.2,1);
+}
+nav.sc{
+  background:rgba(10,10,10,.94);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  padding:16px 64px;
+  border-bottom:1px solid var(--red-border);
+}
+.nlogo{
+  font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:6px;
+  color:var(--white);text-decoration:none;
+  display:flex;align-items:center;gap:0;
+}
+.nlogo .dot{color:var(--red);}
+.nlinks{display:flex;gap:36px;list-style:none;}
+.nlinks a{
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--gray);text-decoration:none;
+  transition:color .25s;position:relative;
+}
+.nlinks a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;
+  background:var(--red);transition:width .25s;
+}
+.nlinks a:hover{color:var(--white);}
+.nlinks a:hover::after{width:100%;}
+.ncta{
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;font-weight:700;
+  background:linear-gradient(135deg,var(--red-bright) 0%,var(--red) 50%,var(--red-dim) 100%);
+  color:var(--white);border:none;padding:13px 28px;
+  position:relative;overflow:hidden;
+  box-shadow:0 2px 24px rgba(139,0,0,.35),inset 0 1px 0 rgba(255,255,255,.12);
+  transition:box-shadow .3s;
+}
+.ncta:hover{box-shadow:0 4px 40px rgba(139,0,0,.55),inset 0 1px 0 rgba(255,255,255,.18);}
+.ncta::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:sweep 2.5s ease-in-out infinite;}
+.ncta:hover::after{animation-duration:.9s;}
+@media(max-width:900px){nav,nav.sc{padding:16px 24px;}.nlinks{display:none;}}
+
+/* ── HERO ──────────────────────────────────────────────────── */
+#hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:80px 64px 80px;overflow:hidden;
+}
+@media(max-width:900px){
+  #hero{
+    min-height:auto;
+    justify-content:flex-start;
+    padding:100px 24px 48px;
+  }
+}
+
+/* hero video */
+.h-video{
+  position:absolute;top:0;right:0;
+  width:55%;height:100%;
+  pointer-events:none;z-index:0;
+}
+.h-video video{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+  filter:brightness(.6);
+  mask-image:linear-gradient(to right,transparent 0%,black 30%,black 80%,transparent 100%),linear-gradient(to bottom,transparent 0%,black 10%,black 90%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 30%,black 80%,transparent 100%),linear-gradient(to bottom,transparent 0%,black 10%,black 90%,transparent 100%);
+  mask-composite:intersect;
+  -webkit-mask-composite:destination-in;
+}
+@media(max-width:900px){.h-video{display:none;}}
+
+/* diagonal accent lines */
+.h-lines{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.h-lines::before{
+  content:'';position:absolute;
+  top:-20%;right:12%;
+  width:1px;height:140%;
+  background:linear-gradient(to bottom,transparent,rgba(139,0,0,.35) 30%,rgba(139,0,0,.35) 70%,transparent);
+  transform:rotate(-8deg);
+  transform-origin:center;
+}
+.h-lines::after{
+  content:'';position:absolute;
+  top:-20%;right:calc(12% + 48px);
+  width:1px;height:140%;
+  background:linear-gradient(to bottom,transparent,rgba(139,0,0,.12) 30%,rgba(139,0,0,.12) 70%,transparent);
+  transform:rotate(-8deg);
+  transform-origin:center;
+}
+
+/* subtle red glow bottom-right */
+.h-glow{
+  position:absolute;bottom:-20%;right:-10%;
+  width:700px;height:700px;
+  background:radial-gradient(circle,rgba(139,0,0,.1) 0%,transparent 65%);
+  pointer-events:none;
+}
+.h-glow2{
+  position:absolute;top:-20%;left:30%;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(139,0,0,.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+/* grid */
+.h-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(139,0,0,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(139,0,0,.04) 1px,transparent 1px);
+  background-size:88px 88px;
+  mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 10%,transparent 75%);
+  pointer-events:none;
+}
+
+.h-eyebrow{
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;
+  text-transform:uppercase;color:var(--red);
+  margin-bottom:24px;
+  opacity:0;transform:translateY(10px);
+}
+.h-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(80px,13vw,180px);
+  line-height:.85;letter-spacing:2px;
+  clip-path:inset(100% 0 0 0);
+}
+.h-title img{max-width:100%;height:auto;width:auto;}
+.h-title .r{color:var(--red);}
+.h-sub{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(16px,2.4vw,32px);
+  letter-spacing:8px;color:var(--gray);
+  clip-path:inset(100% 0 0 0);
+  margin-bottom:48px;
+  margin-top:8px;
+}
+@media(max-width:480px){
+  .h-sub{font-size:clamp(13px,4vw,18px);letter-spacing:3px;}
+}
+.h-bottom{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  flex-wrap:wrap;gap:40px;
+  opacity:0;transform:translateY(16px);
+}
+.h-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+
+.btn-red{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;font-weight:700;
+  background:linear-gradient(135deg,var(--red-bright) 0%,var(--red) 50%,var(--red-dim) 100%);
+  color:var(--white);padding:15px 36px;text-decoration:none;display:inline-block;
+  position:relative;overflow:hidden;
+  box-shadow:0 2px 24px rgba(139,0,0,.4),inset 0 1px 0 rgba(255,255,255,.12);
+  transition:box-shadow .3s;
+}
+.btn-red:hover{box-shadow:0 4px 48px rgba(139,0,0,.65),inset 0 1px 0 rgba(255,255,255,.2);}
+.btn-red::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);animation:sweep 2.5s ease-in-out infinite;}
+.btn-red:hover::after{animation-duration:.9s;}
+
+.btn-ghost{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;border:1px solid var(--red-border);
+  color:var(--gray);padding:15px 36px;text-decoration:none;display:inline-block;
+  transition:border-color .3s,color .3s,background .3s;
+}
+.btn-ghost:hover{border-color:var(--red);color:var(--white);background:var(--red-glow2);}
+
+.h-stats{display:flex;gap:44px;flex-wrap:wrap;}
+.h-stat .num{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--red);line-height:1;display:block;}
+.h-stat .lbl{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:2px;display:block;}
+
+@keyframes sweep{0%{left:-100%;}100%{left:200%;}}
+
+/* ── CENNIK ────────────────────────────────────────────────── */
+#cennik{background:var(--dark);padding:112px 64px;border-top:1px solid var(--red-border);border-bottom:1px solid var(--red-border);}
+@media(max-width:768px){#cennik{padding:80px 24px;}}
+.cennik-tabs{display:flex;gap:4px;margin-bottom:48px;}
+.cennik-tab{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);background:var(--card);border:1px solid var(--gray2);padding:14px 32px;cursor:pointer;transition:all .3s;}
+@media(pointer:fine){.cennik-tab{}}
+.cennik-tab:hover{color:var(--white);border-color:var(--gray3);}
+.cennik-tab.active{color:var(--white);background:var(--red);border-color:var(--red);}
+.cennik-panel{display:none;}
+.cennik-panel.active{display:block;}
+.cennik-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+@media(max-width:1000px){.cennik-grid{grid-template-columns:1fr;}}
+.cn-card{background:var(--card);border:1px solid var(--red-border);padding:32px;opacity:0;transform:translateY(16px);}
+.cn-card-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--white);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--red-border);display:flex;align-items:center;gap:10px;}
+.cn-card-title .cn-icon{width:22px;height:22px;flex-shrink:0;}
+.cn-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:14px;}
+.cn-row:last-child{border-bottom:none;}
+.cn-row .cn-name{color:var(--gray);font-weight:300;flex:1;padding-right:16px;}
+.cn-row .cn-price{color:var(--white);font-weight:500;white-space:nowrap;text-align:right;}
+.cn-card.cn-full{grid-column:1 / -1;}
+.cn-table{width:100%;border-collapse:collapse;margin-top:8px;}
+.cn-table th{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);text-align:left;padding:10px 12px;border-bottom:1px solid var(--red-border);}
+.cn-table th:last-child{text-align:right;}
+.cn-table td{font-size:14px;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--gray);font-weight:300;}
+.cn-table td:last-child{color:var(--white);font-weight:500;text-align:right;white-space:nowrap;}
+.cn-note{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-top:16px;padding:14px 16px;background:var(--card2);border-left:2px solid var(--red);font-weight:400;}
+.cn-sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px;}
+@media(max-width:768px){.cn-sub-grid{grid-template-columns:1fr;}}
+.cn-sub-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:12px;}
+
+/* ── TICKER ────────────────────────────────────────────────── */
+.ticker-wrap{
+  background:var(--red);overflow:hidden;
+  padding:14px 0;border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(0,0,0,.4);
+}
+.ticker-wrap:hover .ticker-track{animation-play-state:paused;}
+.ticker-track{
+  display:flex;white-space:nowrap;
+  animation:ticker 28s linear infinite;
+}
+.ticker-item{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--white);
+  padding:0 48px;display:inline-flex;align-items:center;gap:16px;flex-shrink:0;
+}
+.ticker-item .sep{opacity:.4;font-size:16px;}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ── SHARED SECTION TOKENS ─────────────────────────────────── */
+section{padding:112px 64px;}
+@media(max-width:768px){section{padding:80px 24px;}}
+
+.s-label{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;
+  text-transform:uppercase;color:var(--red);margin-bottom:14px;
+  opacity:0;transform:translateY(10px);
+}
+.s-title{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,96px);line-height:.88;
+  color:var(--white);opacity:0;transform:translateY(20px);margin-bottom:64px;
+}
+.s-title .r{color:var(--red);}
+
+/* ── ABOUT ─────────────────────────────────────────────────── */
+#about{background:var(--dark);padding:0;border-top:1px solid var(--red-border);border-bottom:1px solid var(--red-border);}
+.about-wrap{display:grid;grid-template-columns:420px 1fr;min-height:680px;align-items:stretch;}
+@media(max-width:1100px){.about-wrap{grid-template-columns:320px 1fr;}}
+@media(max-width:768px){.about-wrap{grid-template-columns:1fr;}}
+
+.about-img{overflow:hidden;position:relative;border-right:1px solid var(--red-border);}
+.about-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.78);transition:filter .6s,transform .6s;}
+.about-img:hover img{filter:brightness(.9);transform:scale(1.03);}
+.about-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,transparent 60%,var(--dark) 100%);
+  pointer-events:none;
+}
+@media(max-width:768px){.about-img{height:320px;border-right:none;border-bottom:1px solid var(--red-border);}
+/* Mercedes mobile crop — change '20%' up/down to reframe */
+.about-img img{object-position:center 80%;}}
+
+.about-content{padding:80px 72px;display:flex;flex-direction:column;justify-content:center;}
+@media(max-width:768px){.about-content{padding:48px 24px;}}
+
+.about-content .s-title{margin-bottom:32px;}
+.about-body p{font-size:14px;line-height:1.9;color:#999;margin-bottom:16px;}
+.about-body p strong{color:var(--white);font-weight:500;}
+
+.about-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
+  margin-top:48px;
+}
+@media(max-width:900px){.about-stats{grid-template-columns:1fr 1fr;}}
+.a-stat{
+  background:var(--card);border:1px solid var(--red-border);
+  padding:28px 20px;opacity:0;transform:translateY(16px);
+}
+.a-stat .n{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--red);line-height:1;display:block;}
+.a-stat .u{font-family:'Space Mono',monospace;font-size:12px;color:var(--red);}
+.a-stat .l{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:4px;display:block;}
+
+/* ── WHY ───────────────────────────────────────────────────── */
+#why{background:var(--black);}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:8px;}
+@media(max-width:900px){.why-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.why-grid{grid-template-columns:1fr;}}
+.why-card{
+  background:var(--card);border:1px solid var(--red-border);
+  padding:44px 36px;opacity:0;transform:translateY(20px);
+  transition:border-color .3s,background .3s;
+  position:relative;overflow:hidden;
+}
+.why-card::before{
+  content:'';position:absolute;top:0;left:0;width:3px;height:0;
+  background:var(--red);transition:height .4s ease;
+}
+.why-card:hover{border-color:rgba(139,0,0,.45);background:var(--card2);}
+.why-card:hover::before{height:100%;}
+.why-icon{width:36px;height:36px;margin-bottom:28px;opacity:.8;}
+.why-h{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--white);margin-bottom:12px;}
+.why-p{font-size:13px;line-height:1.85;color:var(--gray);}
+
+/* ── SERVICES ──────────────────────────────────────────────── */
+#services{background:var(--dark);border-top:1px solid var(--red-border);padding-top:112px;}
+.sv-block{
+  display:grid;grid-template-columns:440px 1fr;
+  border:1px solid var(--red-border);margin-bottom:3px;
+  opacity:0;transform:translateY(20px);overflow:hidden;
+  transition:border-color .35s;align-items:stretch;
+}
+.sv-block:hover{border-color:rgba(139,0,0,.42);}
+.sv-block.rev{grid-template-columns:1fr 440px;}
+.sv-block.rev .sv-img{order:2;}
+.sv-block.rev .sv-info{order:1;}
+@media(max-width:1000px){
+  .sv-block{grid-template-columns:320px 1fr;}
+  .sv-block.rev{grid-template-columns:1fr 320px;}
+}
+@media(max-width:820px){
+  .sv-block,.sv-block.rev{grid-template-columns:1fr;}
+  .sv-block.rev .sv-img{order:0;}
+  .sv-block.rev .sv-info{order:0;}
+}
+.sv-img{overflow:hidden;display:flex;}
+.sv-img img{
+  width:100%;object-fit:cover;object-position:center;display:block;
+  filter:brightness(.8);transition:filter .55s,transform .55s;
+  min-height:380px;
+}
+@media(max-width:820px){.sv-img img{min-height:260px;max-height:340px;}}
+.sv-block:hover .sv-img img{filter:brightness(1);transform:scale(1.04);}
+.sv-info{
+  padding:56px 60px;background:var(--card);
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+@media(max-width:820px){.sv-info{padding:32px 24px;}}
+/* red glow on info */
+.sv-info::after{
+  content:'';position:absolute;top:-30%;right:-10%;
+  width:360px;height:360px;
+  background:radial-gradient(circle,rgba(139,0,0,.1) 0%,transparent 70%);
+  pointer-events:none;
+}
+.sv-block.rev .sv-info::after{right:auto;left:-10%;}
+/* To adjust any service image crop:
+   Find the <img> inside .sv-img and change object-position.
+   Examples: 'center top' = show top, 'center 30%' = show upper-third,
+   'center bottom' = show bottom, '50% 20%' = fine control. */
+.sv-num{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--red);margin-bottom:18px;position:relative;z-index:1;}
+.sv-name{
+  font-family:'Bebas Neue',sans-serif;letter-spacing:2px;line-height:.92;
+  color:var(--white);margin-bottom:18px;position:relative;z-index:1;
+}
+@media(min-width:821px){.sv-name{font-size:clamp(56px,5vw,86px);}}
+@media(max-width:820px){.sv-name{font-size:38px;}}
+.sv-desc{font-size:13.5px;line-height:1.85;color:var(--gray);margin-bottom:24px;max-width:480px;position:relative;z-index:1;}
+@media(min-width:1100px){.sv-desc{font-size:15px;max-width:520px;}}
+.sv-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px;position:relative;z-index:1;}
+.sv-tag{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--red);border:1px solid var(--red-border);
+  padding:6px 14px;transition:border-color .2s,background .2s;
+}
+.sv-tag:hover{border-color:var(--red);background:var(--red-glow2);}
+.sv-btn{
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2.5px;
+  text-transform:uppercase;font-weight:700;
+  background:linear-gradient(135deg,var(--red-bright) 0%,var(--red) 50%,var(--red-dim) 100%);
+  color:var(--white);padding:13px 28px;text-decoration:none;
+  display:inline-block;align-self:flex-start;
+  position:relative;overflow:hidden;z-index:1;
+  box-shadow:0 2px 20px rgba(139,0,0,.3),inset 0 1px 0 rgba(255,255,255,.1);
+  transition:box-shadow .3s;
+}
+.sv-btn:hover{box-shadow:0 4px 36px rgba(139,0,0,.55),inset 0 1px 0 rgba(255,255,255,.18);}
+.sv-btn::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:sweep 2.5s ease-in-out infinite;}
+.sv-btn:hover::after{animation-duration:.9s;}
+
+/* ── GALLERY ───────────────────────────────────────────────── */
+#gallery{background:var(--black);border-top:1px solid var(--red-border);}
+.gallery-mosaic{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:auto;
+  gap:4px;
+}
+@media(max-width:1100px){.gallery-mosaic{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:700px){.gallery-mosaic{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.gallery-mosaic{grid-template-columns:1fr;}}
+
+.g-item{
+  position:relative;overflow:hidden;border:1px solid var(--red-border);
+  opacity:0;transform:translateY(14px);
+}
+.g-item.featured{grid-column:span 2;grid-row:span 2;}
+@media(max-width:700px){.g-item.featured{grid-column:span 2;grid-row:span 1;}}
+.g-item img{
+  width:100%;height:100%;object-fit:cover;object-position:center;display:block;
+  filter:brightness(.82);transition:filter .45s,transform .5s;
+  min-height:220px;
+}
+.g-item.featured img{min-height:440px;}
+@media(max-width:700px){.g-item img,.g-item.featured img{min-height:180px;}}
+.g-item:hover img{filter:brightness(1.05);transform:scale(1.04);}
+.g-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:16px 18px 14px;
+  background:linear-gradient(transparent,rgba(10,10,10,.85));
+  font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--red);
+  opacity:0;transition:opacity .3s;
+}
+.g-item:hover .g-label{opacity:1;}
+
+/* ── TEAM ──────────────────────────────────────────────────── */
+#team{background:var(--dark);border-top:1px solid var(--red-border);}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+@media(max-width:900px){.team-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.team-grid{grid-template-columns:1fr;}}
+.t-card{background:var(--card);border:1px solid var(--red-border);overflow:hidden;opacity:0;transform:translateY(20px);transition:border-color .3s;}
+.t-card:hover{border-color:rgba(139,0,0,.45);}
+.t-photo{
+  height:300px;background:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:1px solid var(--red-border);overflow:hidden;
+}
+.t-ph{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.t-ph svg{opacity:.1;}
+.t-ph span{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);}
+.t-info{padding:24px 28px;}
+.t-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;color:var(--white);margin-bottom:4px;}
+.t-role{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
+
+/* ── REVIEWS ───────────────────────────────────────────────── */
+#reviews{background:var(--black);border-top:1px solid var(--red-border);border-bottom:1px solid var(--red-border);overflow:hidden;}
+.reviews-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;flex-wrap:wrap;gap:24px;}
+.r-rating{text-align:right;}
+.r-score{font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--red);line-height:1;}
+.r-stars{display:flex;gap:4px;margin-top:2px;justify-content:flex-end;}
+.r-source{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:2px;color:var(--gray);margin-top:6px;text-align:right;}
+/* horizontal scroll reviews */
+.reviews-track-wrap{touch-action:pan-y;
+  overflow:hidden;position:relative;
+  margin:0 -64px;padding:0 64px;
+}
+@media(max-width:768px){.reviews-track-wrap{touch-action:pan-y;margin:0 -24px;padding:0 24px;}}
+.reviews-track{
+  display:flex;gap:3px;
+  transition:transform .55s cubic-bezier(.25,.1,.25,1);
+}
+.r-card{
+  flex:0 0 360px;background:var(--card);border:1px solid var(--red-border);
+  padding:36px 32px;transition:border-color .3s,background .3s;
+  position:relative;
+}
+@media(max-width:480px){.r-card{flex:0 0 280px;padding:28px 22px;}}
+.r-card:hover{border-color:rgba(139,0,0,.4);background:var(--card2);}
+.r-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--red),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.r-card:hover::before{opacity:1;}
+.r-quote{
+  font-size:36px;line-height:1;color:var(--red);
+  font-family:'Bebas Neue',sans-serif;opacity:.4;margin-bottom:8px;
+}
+.r-text{font-size:13px;line-height:1.85;color:#bbb;margin-bottom:24px;font-style:italic;}
+.r-author{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
+.r-date{font-family:'Space Mono',monospace;font-size:8px;color:var(--gray3);margin-top:3px;}
+.r-nav{display:flex;gap:10px;justify-content:center;margin-top:40px;}
+.r-btn{
+  width:48px;height:48px;border:1px solid var(--red-border);
+  background:transparent;color:var(--red);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s;font-size:16px;font-family:'Space Mono',monospace;
+}
+.r-btn:hover{background:var(--red-glow2);border-color:var(--red);}
+.r-dots{display:flex;gap:6px;align-items:center;}
+.r-dot{
+  width:20px;height:2px;background:var(--gray2);
+  transition:background .3s,width .3s;
+}
+.r-dot.active{background:var(--red);width:32px;}
+
+/* ── CONTACT ───────────────────────────────────────────────── */
+#contact{background:var(--black);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:56px;}}
+.c-info-block{margin-bottom:36px;}
+.c-label{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:3.5px;text-transform:uppercase;color:var(--red);margin-bottom:10px;}
+.c-value{font-size:15px;color:var(--white);line-height:1.7;}
+.c-value a{color:var(--white);text-decoration:none;transition:color .25s;}
+.c-value a:hover{color:var(--red);}
+.c-hours{display:grid;grid-template-columns:auto 1fr;gap:4px 24px;margin-top:6px;}
+.c-day{font-family:'Space Mono',monospace;font-size:10px;color:var(--gray);}
+.c-time{font-family:'Space Mono',monospace;font-size:10px;color:var(--white);}
+.c-note{font-family:'Space Mono',monospace;font-size:7.5px;color:var(--gray3);margin-top:8px;}
+.c-map{
+  width:100%;height:280px;
+  background:var(--card);border:1px solid var(--red-border);
+  position:relative;overflow:hidden;margin-top:32px;
+}
+.c-map iframe{width:100%;height:100%;border:0;filter:grayscale(1) brightness(.45) contrast(1.1);}
+.c-map-overlay{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  pointer-events:none;background:rgba(10,10,10,.2);
+}
+.c-pin{
+  width:12px;height:12px;background:var(--red);border-radius:50%;
+  position:relative;animation:pinpulse 2s ease-in-out infinite;
+}
+.c-pin::after{
+  content:'';position:absolute;inset:-6px;
+  border:1px solid var(--red);border-radius:50%;
+  animation:pinring 2s ease-in-out infinite;
+}
+@keyframes pinpulse{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
+@keyframes pinring{0%{transform:scale(1);opacity:1;}100%{transform:scale(2.8);opacity:0;}}
+.c-pin-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--white);}
+
+.c-cta-desc{font-size:15px;line-height:1.85;color:#999;margin-bottom:36px;}
+.c-cards{display:flex;flex-direction:column;gap:3px;}
+.c-card{
+  display:flex;align-items:center;gap:24px;
+  padding:22px 28px;background:var(--card);border:1px solid var(--red-border);
+  text-decoration:none;
+  transition:border-color .3s,background .3s;
+  position:relative;overflow:hidden;
+}
+.c-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--red);transform:scaleX(0);transition:transform .3s;transform-origin:left;}
+.c-card:hover{border-color:rgba(139,0,0,.4);background:var(--card2);}
+.c-card:hover::before{transform:scaleX(1);}
+.c-icon{
+  width:48px;height:48px;border:1px solid var(--red-border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:border-color .3s;
+}
+.c-card:hover .c-icon{border-color:var(--red);}
+.c-body{flex:1;}
+.c-lbl{font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:4px;}
+.c-val{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:var(--white);}
+.c-arr{font-family:'Space Mono',monospace;font-size:16px;color:var(--red);opacity:0;transform:translateX(-8px);transition:opacity .3s,transform .3s;}
+.c-card:hover .c-arr{opacity:1;transform:translateX(0);}
+
+/* ── FOOTER ────────────────────────────────────────────────── */
+footer{
+  background:var(--dark);border-top:1px solid var(--red-border);
+  padding:44px 64px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;
+}
+@media(max-width:768px){footer{padding:36px 24px;flex-direction:column;align-items:flex-start;gap:20px;}}
+.f-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:6px;color:var(--white);text-decoration:none;}
+.f-logo .r{color:var(--red);}
+.f-copy{font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:2px;color:var(--gray);text-transform:uppercase;text-align:center;}
+@media(max-width:768px){.f-copy{text-align:left;}}
+.f-soc{display:flex;gap:8px;}
+.f-sl{
+  width:36px;height:36px;border:1px solid var(--red-border);
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;
+  transition:border-color .3s,background .3s;
+}
+.f-sl:hover{border-color:var(--red);background:var(--red-glow2);}
+.f-sl svg{width:14px;height:14px;fill:var(--red);display:block;}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "SAAP Service",
+  "image": "https://saapservice.netlify.app/assets/images/logo/logo.png",
+  "url": "https://saapservice.netlify.app",
+  "telephone": "+48576196906",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ul. Zenona Miriama Przesmyckiego 25",
+    "addressLocality": "Wrocław",
+    "postalCode": "51-151",
+    "addressCountry": "PL"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 51.1422,
+    "longitude": 17.0582
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "17:00"
+    }
+  ],
+  "priceRange": "$$",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "13"
+  }
+}
+</script>
+</head>
+<body data-cc-id="cc-1" style="cursor: crosshair; font-family: Barlow;">
+<div id="cursor" class="" style="left: 1402px; top: 1.62991e-57px;"></div>
+
+<!-- NAV -->
+<nav id="nav" class="">
+  <a href="#" class="nlogo"><img src="assets/images/logo/logo.png" alt="SAAP Service" style="height:32px;" width="120" height="32"></a>
+  <ul class="nlinks">
+    <li><a href="#about">O Nas</a></li>
+    <li><a href="#cennik">Cennik</a></li>
+    <li><a href="#services">Usługi</a></li>
+    <li><a href="#gallery">Realizacje</a></li>
+    <li><a href="#reviews">Opinie</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+  <a href="#contact" class="ncta">Umów Wizytę</a>
+</nav>
+
+<!-- HERO -->
+<header id="hero">
+  <h1 class="sr-only">SAAP Service — Serwis Samochodowy Wrocław | Mechanika, Diagnostyka, Wulkanizacja</h1>
+  <div class="h-grid"></div>
+  <div class="h-lines"></div>
+  <div class="h-glow"></div>
+  <div class="h-glow2"></div>
+  <div class="h-video">
+    <video autoplay muted loop playsinline preload="none" poster="assets/images/hero-poster.jpg">
+      <source src="assets/videos/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+  <div class="h-eyebrow" id="h-ey" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">// Wrocław · ul. Przesmyckiego 25 · Premium Auto Serwis</div>
+  <div class="h-title" id="h-t" style="clip-path: inset(0% 0px 0px);"><img src="assets/images/logo/logo.png" alt="SAAP Service — Premium Serwis Samochodowy Wrocław" style="height:clamp(80px,13vw,180px);" width="748" height="245"></div>
+  <div class="h-sub" id="h-s" style="clip-path: inset(0% 0px 0px);">Mechanika · Diagnostyka · Wulkanizacja</div>
+  </div>
+
+  <div class="h-bottom" id="h-bot" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="h-btns">
+      <a href="tel:+48576196906" class="btn-red" id="main-btn" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">576 196 906</a>
+      <a href="#contact" class="btn-ghost">Umów Wizytę</a>
+    </div>
+    <div class="h-stats">
+      <div class="h-stat"><span class="num counter" data-target="5">5</span><span class="lbl">Lat<br>Doświadczenia</span></div>
+      <div class="h-stat"><span class="num counter" data-target="200">200</span><span class="lbl">Zadowolonych<br>Klientów</span></div>
+      <div class="h-stat"><span class="num counter" data-target="8">8</span><span class="lbl">Usług<br>w Ofercie</span></div>
+    </div>
+  </div>
+</header>
+
+<main id="main-content">
+
+<!-- CENNIK -->
+<section id="cennik">
+  <div class="s-label">Cennik</div>
+  <div class="s-title">NASZE <span class="r">CENY</span></div>
+  <div class="cennik-tabs">
+    <div class="cennik-tab active" data-tab="opony">Opony &amp; Koła</div>
+    <div class="cennik-tab" data-tab="mechanika">Mechanika</div>
+  </div>
+
+  <div class="cennik-panel active" id="tab-opony">
+    <div class="cennik-grid">
+      <div class="cn-card">
+        <div class="cn-card-title"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"> <circle cx="12" cy="12" r="10.5" stroke="#8B0000" stroke-width="2.5" fill="none"></circle> <circle cx="12" cy="12" r="7.5" stroke="#8B0000" stroke-width="1.2" fill="none"></circle> <circle cx="12" cy="12" r="3.2" stroke="#8B0000" stroke-width="1.2" fill="none"></circle> <circle cx="12" cy="12" r="1.4" fill="#8B0000"></circle> <path d="M11.2 9.0 L11.0 4.8 L13.0 4.8 L12.8 9.0 Z" fill="#8B0000"></path> <path d="M13.5 10.2 L17.2 7.2 L18.4 8.9 L14.5 11.5 Z" fill="#8B0000"></path> <path d="M13.2 13.2 L16.5 16.8 L15.0 18.0 L11.8 14.2 Z" fill="#8B0000"></path> <path d="M10.8 13.2 L7.5 16.8 L9.0 18.0 L12.2 14.2 Z" fill="#8B0000"></path> <path d="M10.5 10.2 L6.8 7.2 L5.6 8.9 L9.5 11.5 Z" fill="#8B0000"></path> <circle cx="12" cy="7.2" r="0.6" fill="#8B0000" opacity="0.6"></circle> <circle cx="15.6" cy="9.4" r="0.6" fill="#8B0000" opacity="0.6"></circle> <circle cx="14.3" cy="13.6" r="0.6" fill="#8B0000" opacity="0.6"></circle> <circle cx="9.7" cy="13.6" r="0.6" fill="#8B0000" opacity="0.6"></circle> <circle cx="8.4" cy="9.4" r="0.6" fill="#8B0000" opacity="0.6"></circle> </svg></span> Naprawa</div>
+        <div class="cn-row"><span class="cn-name">Naprawa opony</span><span class="cn-price">od 50 zł</span></div>
+        <div class="cn-row"><span class="cn-name">+ przekładka</span><span class="cn-price">—</span></div>
+        <div class="cn-row"><span class="cn-name">Naprawa koła z wyważaniem</span><span class="cn-price">od 80 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Kołkowanie</span><span class="cn-price">50 zł</span></div>
+      </div>
+      <div class="cn-card">
+        <div class="cn-card-title"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"> <line x1="2" y1="8" x2="14" y2="8" stroke="#8B0000" stroke-width="1.5" stroke-linecap="round"></line> <line x1="2" y1="16" x2="14" y2="16" stroke="#8B0000" stroke-width="1.5" stroke-linecap="round"></line> <line x1="2" y1="8" x2="2" y2="21" stroke="#8B0000" stroke-width="1.5" stroke-linecap="round"></line> <line x1="14" y1="8" x2="14" y2="21" stroke="#8B0000" stroke-width="1.5" stroke-linecap="round"></line> <line x1="1" y1="21" x2="15" y2="21" stroke="#8B0000" stroke-width="1.5" stroke-linecap="round"></line> <circle cx="8" cy="5.5" r="2.8" stroke="#8B0000" stroke-width="1.8" fill="none"></circle> <circle cx="8" cy="5.5" r="1.2" stroke="#8B0000" stroke-width="1" fill="none"></circle> <circle cx="8" cy="5.5" r="0.4" fill="#8B0000"></circle> <circle cx="8" cy="13" r="2.8" stroke="#8B0000" stroke-width="1.8" fill="none"></circle> <circle cx="8" cy="13" r="1.2" stroke="#8B0000" stroke-width="1" fill="none"></circle> <circle cx="8" cy="13" r="0.4" fill="#8B0000"></circle> <line x1="17" y1="10" x2="22" y2="10" stroke="#8B0000" stroke-width="1.2" stroke-linecap="round"></line> <line x1="17" y1="14" x2="22" y2="14" stroke="#8B0000" stroke-width="1.2" stroke-linecap="round"></line> <line x1="17" y1="10" x2="17" y2="14" stroke="#8B0000" stroke-width="1.2" stroke-linecap="round"></line> <polyline points="20,8 22,10 20,12" stroke="#8B0000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"></polyline> </svg></span> Przechowywanie Opon</div>
+        <div class="cn-row"><span class="cn-name">Opony 13", 14", 15"</span><span class="cn-price">140 zł / komplet</span></div>
+        <div class="cn-row"><span class="cn-name">Opony 16", 17"</span><span class="cn-price">180 zł / komplet</span></div>
+        <div class="cn-row"><span class="cn-name">Opony 18", 19"</span><span class="cn-price">220 zł / komplet</span></div>
+        <div class="cn-row"><span class="cn-name">Opony 20", 21", 22"</span><span class="cn-price">250 zł / komplet</span></div>
+      </div>
+      <div class="cn-card">
+        <div class="cn-card-title"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"> <line x1="4" y1="21" x2="20" y2="21" stroke="#8B0000" stroke-width="1.5" stroke-linecap="round"></line> <line x1="12" y1="21" x2="12" y2="15" stroke="#8B0000" stroke-width="1.5" stroke-linecap="round"></line> <line x1="3" y1="10" x2="21" y2="10" stroke="#8B0000" stroke-width="1.2" stroke-linecap="round"></line> <circle cx="8" cy="10" r="5.5" stroke="#8B0000" stroke-width="2" fill="none"></circle> <circle cx="8" cy="10" r="2.5" stroke="#8B0000" stroke-width="1.2" fill="none"></circle> <circle cx="8" cy="10" r="0.9" fill="#8B0000"></circle> <line x1="18" y1="10" x2="18" y2="13.5" stroke="#8B0000" stroke-width="1.2" stroke-linecap="round"></line> <rect x="16" y="13.5" width="4" height="2" rx="0.5" fill="#8B0000"></rect> </svg></span> Wyważanie Kół</div>
+        <div class="cn-row"><span class="cn-name">Opona na feldze stalowej</span><span class="cn-price">od 20 zł</span></div>
+        <div class="cn-row" style="margin-top:8px;"><span class="cn-name" style="color:var(--white);font-weight:500;">Opona na feldze aluminiowej</span><span class="cn-price"></span></div>
+        <div class="cn-row"><span class="cn-name">15" – 17"</span><span class="cn-price">od 30 zł</span></div>
+        <div class="cn-row"><span class="cn-name">18" – 20"</span><span class="cn-price">od 35 zł</span></div>
+        <div class="cn-row"><span class="cn-name">21" – 24"</span><span class="cn-price">od 40 zł</span></div>
+      </div>
+      <div class="cn-card">
+        <div class="cn-card-title"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"> <line x1="2" y1="8" x2="12" y2="8" stroke="#8B0000" stroke-width="1.4" stroke-linecap="round"></line> <line x1="2" y1="15" x2="12" y2="15" stroke="#8B0000" stroke-width="1.4" stroke-linecap="round"></line> <line x1="2" y1="8" x2="2" y2="20" stroke="#8B0000" stroke-width="1.4" stroke-linecap="round"></line> <line x1="12" y1="8" x2="12" y2="20" stroke="#8B0000" stroke-width="1.4" stroke-linecap="round"></line> <line x1="1.5" y1="20" x2="12.5" y2="20" stroke="#8B0000" stroke-width="1.4" stroke-linecap="round"></line> <circle cx="7" cy="5.2" r="2.5" stroke="#8B0000" stroke-width="1.6" fill="none"></circle> <circle cx="7" cy="5.2" r="1" stroke="#8B0000" stroke-width="0.9" fill="none"></circle> <circle cx="7" cy="5.2" r="0.35" fill="#8B0000"></circle> <circle cx="7" cy="12.2" r="2.5" stroke="#8B0000" stroke-width="1.6" fill="none"></circle> <circle cx="7" cy="12.2" r="1" stroke="#8B0000" stroke-width="0.9" fill="none"></circle> <circle cx="7" cy="12.2" r="0.35" fill="#8B0000"></circle> <circle cx="19" cy="14" r="4.5" stroke="#8B0000" stroke-width="1.6" fill="none"></circle> <circle cx="19" cy="14" r="2" stroke="#8B0000" stroke-width="1" fill="none"></circle> <circle cx="19" cy="14" r="0.7" fill="#8B0000"></circle> <line x1="19" y1="12" x2="19" y2="10" stroke="#8B0000" stroke-width="1" stroke-linecap="round"></line> <line x1="21" y1="14" x2="23" y2="14" stroke="#8B0000" stroke-width="1" stroke-linecap="round"></line> <line x1="19" y1="16" x2="19" y2="18" stroke="#8B0000" stroke-width="1" stroke-linecap="round"></line> <line x1="17" y1="14" x2="15" y2="14" stroke="#8B0000" stroke-width="1" stroke-linecap="round"></line> </svg></span> Przechowywanie Kół</div>
+        <div class="cn-row"><span class="cn-name">Koła 13", 14", 15"</span><span class="cn-price">180 zł / komplet</span></div>
+        <div class="cn-row"><span class="cn-name">Koła 16", 17"</span><span class="cn-price">230 zł / komplet</span></div>
+        <div class="cn-row"><span class="cn-name">Koła 18", 19"</span><span class="cn-price">290 zł / komplet</span></div>
+        <div class="cn-row"><span class="cn-name">Koła 20", 21"</span><span class="cn-price">330 zł / komplet</span></div>
+        <div class="cn-row"><span class="cn-name">Koła 22", 23"</span><span class="cn-price">400 zł / komplet</span></div>
+      </div>
+      <div class="cn-card cn-full">
+        <div class="cn-card-title"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"> <circle cx="12" cy="12" r="10.5" stroke="#8B0000" stroke-width="2.5" fill="none"></circle> <circle cx="12" cy="12" r="7.5" stroke="#8B0000" stroke-width="1.2" fill="none"></circle> <circle cx="12" cy="12" r="3.2" stroke="#8B0000" stroke-width="1.2" fill="none"></circle> <circle cx="12" cy="12" r="1.4" fill="#8B0000"></circle> <path d="M11.2 9.0 L11.0 4.8 L13.0 4.8 L12.8 9.0 Z" fill="#8B0000"></path> <path d="M13.5 10.2 L17.2 7.2 L18.4 8.9 L14.5 11.5 Z" fill="#8B0000"></path> <path d="M13.2 13.2 L16.5 16.8 L15.0 18.0 L11.8 14.2 Z" fill="#8B0000"></path> <path d="M10.8 13.2 L7.5 16.8 L9.0 18.0 L12.2 14.2 Z" fill="#8B0000"></path> <path d="M10.5 10.2 L6.8 7.2 L5.6 8.9 L9.5 11.5 Z" fill="#8B0000"></path> <circle cx="12" cy="7.2" r="0.6" fill="#8B0000" opacity="0.6"></circle> <circle cx="15.6" cy="9.4" r="0.6" fill="#8B0000" opacity="0.6"></circle> <circle cx="14.3" cy="13.6" r="0.6" fill="#8B0000" opacity="0.6"></circle> <circle cx="9.7" cy="13.6" r="0.6" fill="#8B0000" opacity="0.6"></circle> <circle cx="8.4" cy="9.4" r="0.6" fill="#8B0000" opacity="0.6"></circle> </svg></span> Zmiana Opon z Wyważaniem</div>
+        <div class="cn-note">Z czujnikiem TPMS w kole — + 10 zł / sztuka &nbsp;·&nbsp; Opona Run on Flat — dopłata 30 zł / sztuka</div>
+        <div class="cn-sub-grid">
+          <div>
+            <div class="cn-sub-title">Opona na feldze stalowej</div>
+            <table class="cn-table">
+              <thead><tr><th>Rozmiar</th><th>Cena / sztuka</th><th>Cena / komplet</th></tr></thead>
+              <tbody>
+                <tr><td>13" – 14"</td><td>25 zł</td><td>100 zł</td></tr>
+                <tr><td>15" – 16"</td><td>30 zł</td><td>120 zł</td></tr>
+                <tr><td>BUS</td><td>70 zł</td><td>280 zł</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="cn-sub-title">Opona na feldze aluminiowej</div>
+            <table class="cn-table">
+              <thead><tr><th>Rozmiar</th><th>Cena / sztuka</th><th>Cena / komplet</th></tr></thead>
+              <tbody>
+                <tr><td>15", 16"</td><td>40 zł</td><td>160 zł</td></tr>
+                <tr><td>17"</td><td>45 zł</td><td>180 zł</td></tr>
+                <tr><td>18"</td><td>50 zł</td><td>200 zł</td></tr>
+                <tr><td>19"</td><td>60 zł</td><td>240 zł</td></tr>
+                <tr><td>20"</td><td>70 zł</td><td>280 zł</td></tr>
+                <tr><td>21"</td><td>80 zł</td><td>320 zł</td></tr>
+                <tr><td>22"</td><td>90 zł</td><td>360 zł</td></tr>
+                <tr><td>23"</td><td>100 zł</td><td>400 zł</td></tr>
+                <tr><td>24"</td><td>120 zł</td><td>480 zł</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cennik-panel" id="tab-mechanika">
+    <div class="cennik-grid">
+      <div class="cn-card">
+        <div class="cn-card-title"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#8B0000"> <path d="M15.5 2a4.5 4.5 0 00-4.36 5.62L3.22 15.54a2.5 2.5 0 000 3.54l1.7 1.7a2.5 2.5 0 003.54 0l7.92-7.92A4.5 4.5 0 0021.5 7.5c0-.42-.06-.83-.16-1.22l-2.6 2.6-1.62-.54-.54-1.62 2.6-2.6A4.5 4.5 0 0015.5 2zM5.5 17a1 1 0 110 2 1 1 0 010-2z"></path> </svg></span> Serwis Okresowy</div>
+        <div class="cn-row"><span class="cn-name">Wymiana oleju + filtr</span><span class="cn-price">od 160 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Wymiana filtra powietrza</span><span class="cn-price">od 30 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Wymiana filtra kabinowego</span><span class="cn-price">od 30 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Wymiana płynu chłodniczego</span><span class="cn-price">od 180 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Wymiana świec zapłonowych</span><span class="cn-price">od 80 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Kontrola stanu technicznego</span><span class="cn-price">od 80 zł</span></div>
+      </div>
+      <div class="cn-card">
+        <div class="cn-card-title"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#8B0000"> <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 1.8a8.2 8.2 0 110 16.4A8.2 8.2 0 0112 4z"></path> <path d="M12 6.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 1.5a4 4 0 110 8 4 4 0 010-8z"></path> <circle cx="12" cy="12" r="1.6"></circle> <circle cx="12" cy="4.8" r="0.7"></circle> <circle cx="15.8" cy="6" r="0.7"></circle> <circle cx="17.8" cy="9.5" r="0.7"></circle> <circle cx="17.8" cy="14.5" r="0.7"></circle> <circle cx="15.8" cy="18" r="0.7"></circle> <circle cx="12" cy="19.2" r="0.7"></circle> <circle cx="8.2" cy="18" r="0.7"></circle> <circle cx="6.2" cy="14.5" r="0.7"></circle> <circle cx="6.2" cy="9.5" r="0.7"></circle> <circle cx="8.2" cy="6" r="0.7"></circle> </svg></span> Układ Hamulcowy</div>
+        <div class="cn-row"><span class="cn-name">Klocki hamulcowe przód / tył</span><span class="cn-price">od 150 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Tarcze + klocki hamulcowe przód</span><span class="cn-price">od 320 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Tarcze + klocki hamulcowe tył</span><span class="cn-price">od 320 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Wymiana płynu hamulcowego</span><span class="cn-price">od 180 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Regeneracja zacisku hamulcowego</span><span class="cn-price">od 200 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Czyszczenie i smarowanie zacisków</span><span class="cn-price">od 120 zł</span></div>
+      </div>
+      <div class="cn-card">
+        <div class="cn-card-title"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#8B0000"> <rect x="10.5" y="2" width="3" height="5" rx="1"></rect> <path d="M10.5 7c0 0 3 1 3 2s-3 1-3 2 3 1 3 2-3 1-3 2" fill="none" stroke="#8B0000" stroke-width="1.5" stroke-linecap="round"></path> <rect x="10.5" y="15" width="3" height="2.5" rx="0.5"></rect> <rect x="8" y="17.5" width="8" height="1.5" rx="0.5"></rect> <rect x="9.5" y="19" width="5" height="1.5" rx="0.5"></rect> </svg></span> Zawieszenie / Układ Kierowniczy</div>
+        <div class="cn-row"><span class="cn-name">Drążek kierowniczy (para)</span><span class="cn-price">od 180 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Końcówka drążka kierowniczego</span><span class="cn-price">od 140 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Amortyzator (1 szt.)</span><span class="cn-price">od 220 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Wahacz</span><span class="cn-price">od 250 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Łącznik stabilizatora</span><span class="cn-price">od 80 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Łożysko koła (1 szt.)</span><span class="cn-price">od 180 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Sprężyna (1 szt.)</span><span class="cn-price">od 220 zł</span></div>
+      </div>
+      <div class="cn-card">
+        <div class="cn-card-title"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#8B0000"> <path d="M21.7 13.9l-1.5-.9c.1-.6.2-1.3.2-2s-.1-1.4-.2-2l1.5-.9c.4-.2.5-.7.3-1.1l-1.5-2.6c-.2-.4-.7-.5-1.1-.3l-1.5.9c-.9-.7-1.9-1.3-3-1.7V1.9c0-.5-.4-.9-.9-.9h-3c-.5 0-.9.4-.9.9v1.5C9 3.8 8 4.4 7.1 5.1L5.6 4.2c-.4-.2-.9-.1-1.1.3L3 7.1c-.2.4-.1.9.3 1.1l1.5.9C4.7 9.7 4.6 10.4 4.6 11s.1 1.3.2 1.9l-1.5.9c-.4.2-.5.7-.3 1.1l1.5 2.6c.2.4.7.5 1.1.3l1.5-.9c.9.7 1.9 1.3 3 1.7v1.5c0 .5.4.9.9.9h3c.5 0 .9-.4.9-.9v-1.5c1.1-.4 2.1-1 3-1.7l1.5.9c.4.2.9.1 1.1-.3l1.5-2.6c.2-.4.1-.9-.3-1.1zM12 15c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"></path> <circle cx="12" cy="11" r="1.8"></circle> </svg></span> Napęd / Silnik</div>
+        <div class="cn-row"><span class="cn-name">Wymiana rozrządu</span><span class="cn-price">od 650 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Wymiana sprzęgła</span><span class="cn-price">od 800 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Wymiana alternatora</span><span class="cn-price">od 250 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Wymiana rozrusznika</span><span class="cn-price">od 250 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Wymiana poduszki silnika</span><span class="cn-price">od 100 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Czyszczenie przepustnicy</span><span class="cn-price">od 150 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Regeneracja turbosprężarki</span><span class="cn-price">od 800 zł</span></div>
+      </div>
+      <div class="cn-card">
+        <div class="cn-card-title"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#8B0000"> <rect x="3" y="4" width="18" height="12" rx="1.5"></rect> <rect x="4.5" y="5.5" width="15" height="9" rx="0.5" fill="white" opacity="0.15"></rect> <path d="M6 12l2.5-3 2.5 2 2.5-4 2.5 2" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M2 16h20l-1.5 2.5a1 1 0 01-.87.5H4.37a1 1 0 01-.87-.5L2 16z"></path> </svg></span> Diagnostyka</div>
+        <div class="cn-row"><span class="cn-name">Diagnostyka komputerowa</span><span class="cn-price">od 150 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Kasowanie błędów</span><span class="cn-price">od 80 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Przegląd przed zakupem</span><span class="cn-price">od 250 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Sprawdzenie układów pojazdu</span><span class="cn-price">od 120 zł</span></div>
+      </div>
+      <div class="cn-card">
+        <div class="cn-card-title"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#8B0000"> <rect x="2" y="7" width="20" height="12" rx="1.5"></rect> <rect x="9" y="5" width="2.5" height="2.5" rx="0.4"></rect> <rect x="12.5" y="5" width="2.5" height="2.5" rx="0.4"></rect> <rect x="5" y="11.5" width="4" height="1.5" rx="0.4" fill="white"></rect> <rect x="6.5" y="10" width="1.5" height="4.5" rx="0.4" fill="white"></rect> <rect x="15" y="11.5" width="4" height="1.5" rx="0.4" fill="white"></rect> </svg></span> Elektryka</div>
+        <div class="cn-row"><span class="cn-name">Wymiana akumulatora</span><span class="cn-price">od 50 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Sprawdzenie ładowania</span><span class="cn-price">od 30 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Wymiana bezpiecznika / przekaźnika</span><span class="cn-price">od 30 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Naprawa instalacji elektrycznej</span><span class="cn-price">od 150 zł</span></div>
+      </div>
+      <div class="cn-card">
+        <div class="cn-card-title"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#8B0000"> <rect x="2" y="11" width="20" height="10" rx="1.5"></rect> <path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="#8B0000" stroke-width="2" stroke-linecap="round"></path> <rect x="6" y="14" width="12" height="1.5" rx="0.5" fill="white" opacity="0.35"></rect> <rect x="11" y="13" width="2" height="4.5" rx="0.5" fill="white" opacity="0.35"></rect> </svg></span> Pozostałe Usługi</div>
+        <div class="cn-row"><span class="cn-name">Wymiana wycieraczek</span><span class="cn-price">od 50 zł</span></div>
+        <div class="cn-row"><span class="cn-name">Wymiana żarówki</span><span class="cn-price">od 30 zł</span></div>
+      </div>
+      <div class="cn-card" style="display:flex;align-items:center;justify-content:center;padding:24px 32px;">
+        <div style="text-align:center;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--red);margin-bottom:4px;"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#8B0000"> <path d="M12 2L3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6L12 2z"></path> <path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg></span> Gwarancja na wykonane usługi</div>
+          <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);">Pewność · Jakość · Doświadczenie</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <!-- doubled for seamless loop -->
+    <span class="ticker-item">Diagnostyka Komputerowa<span class="sep">·</span></span>
+    <span class="ticker-item">Mechanika Samochodowa<span class="sep">·</span></span>
+    <span class="ticker-item">Naprawa Hamulców<span class="sep">·</span></span>
+    <span class="ticker-item">Wulkanizacja &amp; Koła<span class="sep">·</span></span>
+    <span class="ticker-item">Detailing Samochodu<span class="sep">·</span></span>
+    <span class="ticker-item">Elektryka Samochodowa<span class="sep">·</span></span>
+    <span class="ticker-item">Naprawa Nadwozia<span class="sep">·</span></span>
+    <span class="ticker-item">Pozostałe Usługi<span class="sep">·</span></span>
+    <!-- repeat -->
+    <span class="ticker-item">Diagnostyka Komputerowa<span class="sep">·</span></span>
+    <span class="ticker-item">Mechanika Samochodowa<span class="sep">·</span></span>
+    <span class="ticker-item">Naprawa Hamulców<span class="sep">·</span></span>
+    <span class="ticker-item">Wulkanizacja &amp; Koła<span class="sep">·</span></span>
+    <span class="ticker-item">Detailing Samochodu<span class="sep">·</span></span>
+    <span class="ticker-item">Elektryka Samochodowa<span class="sep">·</span></span>
+    <span class="ticker-item">Naprawa Nadwozia<span class="sep">·</span></span>
+    <span class="ticker-item">Pozostałe Usługi<span class="sep">·</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-img">
+      <!-- object-position: adjust % in CSS below (.about-img img) to reframe on mobile -->
+      <img src="https://saapservis.netlify.app/assets/images/gallery/mercedes-g63-warsztat.jpg" alt="Mercedes G63 AMG w warsztacie SAAP Service Wrocław" loading="lazy" width="800" height="600">
+      <div class="about-img-overlay"></div>
+    </div>
+    <div class="about-content">
+      <div class="s-label" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">// Nasza Filozofia</div>
+      <h2 class="s-title" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">BEZ<br><span class="r">KOMPROMISÓW</span></h2>
+      <div class="about-body">
+        <p><strong>SAAP Service to nie zwykły warsztat.</strong> To miejsce, gdzie każde auto traktowane jest jak własne. Andrzej i jego zespół to mechanicy z krwi i kości — pasja do motoryzacji widać w każdym szczególe.</p>
+        <p>Pełna transparentność kosztów przed naprawą. Bez niespodzianek przy odbiorze. Szybka komunikacja, realne terminy.</p>
+        <p>BMW M3, Audi RS3, Kia Stinger, Mercedes G63, Lancia Delta — każde auto zasługuje na tę samą uwagę i precyzję.</p>
+      </div>
+      <div class="about-stats">
+        <div class="a-stat" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><span class="n counter" data-target="5">5</span><span class="l">Lat na rynku</span></div>
+        <div class="a-stat" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><span class="n counter" data-target="200">200</span><span class="l">Projektów rocznie</span></div>
+        <div class="a-stat" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><span class="n counter" data-target="5">5</span><span class="l">Gwiazdki Google</span></div>
+        <div class="a-stat" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><span class="n counter" data-target="100">100</span><span class="u">%</span><span class="l">Transparentna wycena</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="s-label" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">// Dlaczego My</div>
+  <h2 class="s-title" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">CO NAS<br><span class="r">WYRÓŻNIA</span></h2>
+  <div class="why-grid">
+    <div class="why-card" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <div class="why-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none"><rect x="6" y="3" width="20" height="26" rx="2" fill="#8B0000"></rect><rect x="9" y="9" width="14" height="1.8" rx="0.9" fill="white"></rect><rect x="9" y="14" width="14" height="1.8" rx="0.9" fill="white"></rect><rect x="9" y="19" width="9" height="1.8" rx="0.9" fill="white"></rect><path d="M6 29l2.5-2.5L11 29l2.5-2.5L16 29l2.5-2.5L21 29l2.5-2.5L26 29V3" stroke="#8B0000" stroke-width="1.2" fill="none"></path><circle cx="27" cy="27" r="6" fill="#8B0000"></circle><path d="M24.2 27l2 2 3.8-3.8" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+      <div class="why-h">Pełna Transparentność</div>
+      <div class="why-p">Szczegółowy kosztorys z wyszczególnieniem części i robocizny — zawsze przed rozpoczęciem prac. Ostateczna kwota nie odbiega od wyceny.</div>
+    </div>
+    <div class="why-card" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <div class="why-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none"><path d="M21 2L7 20h12l-2 14 16-20H21L21 2z" fill="#8B0000"></path></svg>
+      </div>
+      <div class="why-h">Ekspresowe Terminy</div>
+      <div class="why-p">Wymiana kół w pół dnia, serwis olejowy od 40 minut. Realizujemy również zlecenia pilne — poza standardowymi godzinami pracy.</div>
+    </div>
+    <div class="why-card" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <div class="why-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none"><circle cx="15" cy="15" r="11" fill="#8B0000"></circle><circle cx="15" cy="15" r="7.5" fill="white" opacity="0.12"></circle><path d="M11.5 15h7M15 11.5v7" stroke="white" stroke-width="2.2" stroke-linecap="round"></path><path d="M23 23L31.5 31.5" stroke="#8B0000" stroke-width="3.5" stroke-linecap="round"></path></svg>
+      </div>
+      <div class="why-h">Precyzyjna Diagnostyka</div>
+      <div class="why-p">Lokalizujemy usterki, z którymi nie radzą sobie inne warsztaty. Profesjonalny sprzęt diagnostyczny i wieloletnie doświadczenie mechaników.</div>
+    </div>
+    <div class="why-card" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <div class="why-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none"><rect x="9" y="3" width="13" height="22" rx="2.5" fill="#8B0000"></rect><rect x="12" y="5.5" width="7" height="14" rx="1" fill="white" opacity="0.15"></rect><circle cx="15.5" cy="22" r="1.2" fill="white"></circle><path d="M24.5 11c2 1.8 3.2 4.3 3.2 7s-1.2 5.2-3.2 7" stroke="#8B0000" stroke-width="2.2" stroke-linecap="round"></path><path d="M27.5 8c3.2 2.8 5 6.7 5 10s-1.8 7.2-5 10" stroke="#8B0000" stroke-width="2" stroke-linecap="round" opacity="0.5"></path></svg>
+      </div>
+      <div class="why-h">Szybki Kontakt</div>
+      <div class="why-p">Bezpośrednia komunikacja z mechanikiem. Wycena online, rezerwacja terminu bez kolejki — odpowiadamy w ciągu kilku godzin.</div>
+    </div>
+    <div class="why-card" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <div class="why-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="#8B0000"><path d="M2 22 Q2 20 4 20 L7 20 L11 14 Q13 12 16 12 L22 12 Q25 12 27 14 L30 18 L32 18 Q34 18 34 20 L34 22 Z"></path><path d="M14 20 L16 14.5 L21 14.5 L24.5 20 Z" fill="white" opacity="0.2"></path><circle cx="27" cy="22" r="4" fill="white"></circle><circle cx="9" cy="22" r="4" fill="white"></circle><circle cx="27" cy="22" r="3.5" fill="#8B0000"></circle><circle cx="27" cy="22" r="1.8" fill="white" opacity="0.15"></circle><circle cx="27" cy="22" r="0.8" fill="#8B0000"></circle><circle cx="9" cy="22" r="3.5" fill="#8B0000"></circle><circle cx="9" cy="22" r="1.8" fill="white" opacity="0.15"></circle><circle cx="9" cy="22" r="0.8" fill="#8B0000"></circle><line x1="1" y1="16" x2="5" y2="16" stroke="#8B0000" stroke-width="1.4" stroke-linecap="round"></line><line x1="1" y1="19" x2="4" y2="19" stroke="#8B0000" stroke-width="1" stroke-linecap="round" opacity="0.5"></line></svg>
+      </div>
+      <div class="why-h">Specjalizacja Premium</div>
+      <div class="why-p">Obsługujemy pojazdy wszystkich marek — od aut miejskich po samochody sportowe i premium. Każde zlecenie traktujemy z jednakową precyzją.</div>
+    </div>
+    <div class="why-card" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <div class="why-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none"><path d="M11 5h14v12a7 7 0 01-14 0V5z" fill="#8B0000"></path><path d="M11 8H7a4 4 0 004 4" stroke="#8B0000" stroke-width="2" stroke-linecap="round" fill="none"></path><path d="M25 8h4a4 4 0 01-4 4" stroke="#8B0000" stroke-width="2" stroke-linecap="round" fill="none"></path><path d="M18 24v5" stroke="#8B0000" stroke-width="2" stroke-linecap="round"></path><rect x="12" y="29" width="12" height="2.5" rx="1.2" fill="#8B0000"></rect><path d="M14 13l2.5 2.5 5.5-5.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+      <div class="why-h">Gwarancja Jakości</div>
+      <div class="why-p">Każda wykonana usługa objęta jest gwarancją. Stosujemy wyłącznie sprawdzone części i materiały eksploatacyjne renomowanych producentów.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="s-label" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">// Co Robimy</div>
+  <h2 class="s-title" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">NASZE<br><span class="r">USŁUGI</span></h2>
+
+  <div class="sv-block" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="sv-img"><img src="https://saapservis.netlify.app/assets/images/services/cupra-diagnostyka.jpg" alt="Diagnostyka komputerowa samochodu w serwisie SAAP Service Wrocław" loading="lazy" width="800" height="600"></div>
+    <div class="sv-info">
+      <div class="sv-num">01 — Diagnostyka</div>
+      <div class="sv-name">Diagnostyka<br>Komputerowa</div>
+      <div class="sv-desc">Pełna diagnostyka silnika, elektryki i układów sterowania. Kasujemy kody błędów, czytamy parametry na żywo — wykrywamy usterki których inne serwisy nie znajdą.</div>
+      <div class="sv-tags"><span class="sv-tag">Silnik</span><span class="sv-tag">OBD</span><span class="sv-tag">Elektryka</span><span class="sv-tag">Wszystkie Marki</span></div>
+      <a href="tel:+48576196906" class="sv-btn">→ Umów Diagnostykę</a>
+    </div>
+  </div>
+
+  <div class="sv-block rev" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="sv-img"><img src="https://saapservis.netlify.app/assets/images/services/silnik-lancuch.jpg" alt="Naprawa mechaniczna silnika — wymiana łańcucha rozrządu Wrocław" loading="lazy" width="800" height="600"></div>
+    <div class="sv-info">
+      <div class="sv-num">02 — Mechanika</div>
+      <div class="sv-name">Mechanika<br>Samochodowa</div>
+      <div class="sv-desc">Kompleksowe naprawy mechaniczne: silnik, skrzynia biegów, rozrząd, układ kierowniczy i zawieszenie. Od wymiany oleju po pełny remont jednostki napędowej.</div>
+      <div class="sv-tags"><span class="sv-tag">Silnik</span><span class="sv-tag">Zawieszenie</span><span class="sv-tag">Rozrząd</span><span class="sv-tag">Układ Kierowniczy</span></div>
+      <a href="tel:+48576196906" class="sv-btn">→ Umów Naprawę</a>
+    </div>
+  </div>
+
+  <div class="sv-block" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="sv-img"><img src="https://saapservis.netlify.app/assets/images/services/hamulce-zolte.jpg" alt="Wymiana klocków i tarcz hamulcowych w SAAP Service Wrocław" loading="lazy" width="800" height="600" style="object-position:center bottom;"></div>
+    <div class="sv-info">
+      <div class="sv-num">03 — Hamulce</div>
+      <div class="sv-name">Naprawa<br>Hamulców</div>
+      <div class="sv-desc">Wymiana klocków, tarcz, zacisków. Sportowe zestawy hamulcowe — Zimmermann, Brembo. Pełna regeneracja układu hamulcowego dla każdej marki.</div>
+      <div class="sv-tags"><span class="sv-tag">Klocki</span><span class="sv-tag">Tarcze</span><span class="sv-tag">Zaciski</span><span class="sv-tag">Sport</span></div>
+      <a href="tel:+48576196906" class="sv-btn">→ Umów Naprawę</a>
+    </div>
+  </div>
+
+  <div class="sv-block rev" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="sv-img"><img src="https://saapservis.netlify.app/assets/images/gallery/audi-rs3-lift.jpg" alt="Wulkanizacja i wymiana opon — Audi RS3 na podnośniku" loading="lazy" width="800" height="600" style="object-position:center bottom;"></div>
+    <div class="sv-info">
+      <div class="sv-num">04 — Wulkanizacja</div>
+      <div class="sv-name">Wulkanizacja<br>&amp; Koła</div>
+      <div class="sv-desc">Wymiana i wyważanie opon, montaż felg sportowych. Zmiana sprężyn i zestawów kół. Robimy to w pół dnia — nawet w ostatniej chwili.</div>
+      <div class="sv-tags"><span class="sv-tag">Opony</span><span class="sv-tag">Felgi</span><span class="sv-tag">Wyważanie</span><span class="sv-tag">Sprężyny</span></div>
+      <a href="tel:+48576196906" class="sv-btn">→ Umów Wymianę</a>
+    </div>
+  </div>
+
+  <div class="sv-block" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="sv-img"><img src="https://saapservis.netlify.app/assets/images/services/detailing-bmw-smerf.jpg" alt="Detailing samochodowy BMW — profesjonalna pielęgnacja lakieru" loading="lazy" width="800" height="600" style="object-position:center 70%;"></div>
+    <div class="sv-info">
+      <div class="sv-num">05 — Detailing</div>
+      <div class="sv-name">Detailing<br>Samochodu</div>
+      <div class="sv-desc">Profesjonalne czyszczenie i pielęgnacja nadwozia i wnętrza. Twoje auto wyjeżdża w stanie lepszym niż przyjechało — każdy detal dopracowany do perfekcji.</div>
+      <div class="sv-tags"><span class="sv-tag">Detailing</span><span class="sv-tag">Wnętrze</span><span class="sv-tag">Pielęgnacja</span></div>
+      <a href="tel:+48576196906" class="sv-btn">→ Umów Detailing</a>
+    </div>
+  </div>
+
+  <div class="sv-block rev" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="sv-img"><img src="https://saapservis.netlify.app/assets/images/services/mercedes-diag.jpg" alt="Diagnostyka i naprawa elektryki samochodowej Mercedes" loading="lazy" width="800" height="600"></div>
+    <div class="sv-info">
+      <div class="sv-num">06 — Elektryka</div>
+      <div class="sv-name">Elektryka<br>Samochodowa</div>
+      <div class="sv-desc">Naprawa szyb elektrycznych, lusterek, instalacji elektrycznej. Wymiana wycieraczek i filtrów kabinowych. Diagnostyka układów elektrycznych.</div>
+      <div class="sv-tags"><span class="sv-tag">Szyby</span><span class="sv-tag">Lusterka</span><span class="sv-tag">Wycieraczki</span><span class="sv-tag">Filtry</span></div>
+      <a href="tel:+48576196906" class="sv-btn">→ Umów Naprawę</a>
+    </div>
+  </div>
+
+  <div class="sv-block" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="sv-img"><img src="https://saapservis.netlify.app/assets/images/gallery/lancia-martini.jpg" alt="Naprawa nadwozia i blacharstwo — Lancia Delta Martini Racing" loading="lazy" width="800" height="600"></div>
+    <div class="sv-info">
+      <div class="sv-num">07 — Nadwozie</div>
+      <div class="sv-name">Naprawa<br>Nadwozia</div>
+      <div class="sv-desc">Naprawy karoserii i elementów nadwozia. Przywracamy auta do stanu fabrycznego po kolizjach i uszkodzeniach mechanicznych.</div>
+      <div class="sv-tags"><span class="sv-tag">Karoseria</span><span class="sv-tag">Kolizje</span><span class="sv-tag">Blacharstwo</span></div>
+      <a href="tel:+48576196906" class="sv-btn">→ Umów Wycenę</a>
+    </div>
+  </div>
+
+  <div class="sv-block rev" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="sv-img"><img src="https://saapservis.netlify.app/assets/images/services/bmw-diag-tablet.jpg" alt="Diagnostyka samochodowa z użyciem tabletu OBD Wrocław" loading="lazy" width="800" height="600"></div>
+    <div class="sv-info">
+      <div class="sv-num">08 — Pozostałe</div>
+      <div class="sv-name">Pozostałe<br>Usługi</div>
+      <div class="sv-desc">Pełna obsługa serwisowa w jednym miejscu. Wymiana oleju, przeglądy, filtry, konsultacje. Masz inny problem? Zadzwoń — znajdziemy rozwiązanie.</div>
+      <div class="sv-tags"><span class="sv-tag">Wymiana Oleju</span><span class="sv-tag">Przegląd</span><span class="sv-tag">Filtry</span><span class="sv-tag">Konsultacje</span></div>
+      <a href="tel:+48576196906" class="sv-btn">→ Zadzwoń</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="s-label" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">// Realizacje</div>
+  <h2 class="s-title" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">NASZE<br><span class="r">REALIZACJE</span></h2>
+  <div class="gallery-mosaic">
+    <div class="g-item featured" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <img src="https://saapservis.netlify.app/assets/images/gallery/mercedes-g63-warsztat.jpg" alt="Mercedes G63 AMG — serwis i obsługa w SAAP Service Wrocław" loading="lazy" width="800" height="600">
+      <div class="g-label">Mercedes G63 · Serwis</div>
+    </div>
+    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <img src="https://saapservis.netlify.app/assets/images/gallery/kia-stinger-lift.jpg" alt="Kia Stinger — przegląd i serwis na podnośniku" loading="lazy" width="800" height="600">
+      <div class="g-label">Kia Stinger · Serwis</div>
+    </div>
+    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <img src="https://saapservis.netlify.app/assets/images/gallery/bmw-pink-touring.jpg" alt="BMW M3 Touring — detailing i obsługa serwisowa" loading="lazy" width="800" height="600">
+      <div class="g-label">BMW M3 Touring</div>
+    </div>
+    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <img src="https://saapservis.netlify.app/assets/images/gallery/bmw-m2-smerf-warsztat.jpg" alt="BMW M2 — naprawa i serwis w warsztacie SAAP" loading="lazy" width="800" height="600">
+      <div class="g-label">BMW M2 · D2 Smerf</div>
+    </div>
+    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <img src="https://saapservis.netlify.app/assets/images/gallery/volvo-lift.jpg" alt="Volvo — diagnostyka i naprawa zawieszenia" loading="lazy" width="800" height="600">
+      <div class="g-label">Volvo · Serwis</div>
+    </div>
+    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <img src="https://saapservis.netlify.app/assets/images/gallery/alfa-romeo.jpg" alt="Alfa Romeo — serwis mechaniczny Wrocław" loading="lazy" width="800" height="600">
+      <div class="g-label">Alfa Romeo · Klasyk</div>
+    </div>
+    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <img src="https://saapservis.netlify.app/assets/images/gallery/dodge-ram.jpg" alt="Dodge RAM — obsługa serwisowa aut amerykańskich" loading="lazy" width="800" height="600">
+      <div class="g-label">Dodge RAM 1500</div>
+    </div>
+    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <img src="https://saapservis.netlify.app/assets/images/gallery/bmw-white-taillights.jpg" alt="BMW — naprawa elektryki i oświetlenia" loading="lazy" width="800" height="600">
+      <div class="g-label">BMW · Serwis</div>
+    </div>
+    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+      <img src="https://saapservis.netlify.app/assets/images/gallery/bmw-2series.jpg" alt="BMW Seria 2 — kompleksowy serwis samochodowy" loading="lazy" width="800" height="600">
+      <div class="g-label">BMW 2 Series</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-head">
+    <div>
+      <div class="s-label" style="opacity: 1; transform: translate(0px, 0px); translate: none; rotate: none; scale: none;">// Opinie Klientów</div>
+      <h2 class="s-title" style="opacity: 1; transform: translate(0px, 0px); margin-bottom: 0px; translate: none; rotate: none; scale: none;">MÓWIĄ<br><span class="r">O NAS</span></h2>
+    </div>
+    <div class="r-rating">
+      <div class="r-score">5.0</div>
+      <div class="r-stars" id="r-stars"><svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><defs><clipPath id="sc0"><rect x="0" y="0" width="24" height="24"></rect></clipPath></defs>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#222"></path>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#8B0000" clip-path="url(#sc0)"></path></svg><svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><defs><clipPath id="sc1"><rect x="0" y="0" width="24" height="24"></rect></clipPath></defs>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#222"></path>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#8B0000" clip-path="url(#sc1)"></path></svg><svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><defs><clipPath id="sc2"><rect x="0" y="0" width="24" height="24"></rect></clipPath></defs>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#222"></path>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#8B0000" clip-path="url(#sc2)"></path></svg><svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><defs><clipPath id="sc3"><rect x="0" y="0" width="24" height="24"></rect></clipPath></defs>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#222"></path>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#8B0000" clip-path="url(#sc3)"></path></svg><svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><defs><clipPath id="sc4"><rect x="0" y="0" width="24" height="24"></rect></clipPath></defs>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#222"></path>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#8B0000" clip-path="url(#sc4)"></path></svg></div>
+      <div class="r-source">Google Maps · 13+ opinii</div>
+    </div>
+  </div>
+  <div class="reviews-track-wrap">
+    <div class="reviews-track" id="r-track" style="transform: translateX(-1089px);"><div class="r-card"><div class="r-quote">"</div><div class="r-text">Wszystko elegancko, zmiana kół i sprężyny, chłopaki uwinęli się w pół dnia. Będę odwiedzać.</div><div class="r-author">Maciej H.</div><div class="r-date">Miesiąc temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Pełny profesjonalizm i bardzo szybkie terminy. Uratowali mnie z wymianą opon w ekspresowym terminie.</div><div class="r-author">Rafał T.</div><div class="r-date">8 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Bardzo fajny serwis. Wszystko zrobione uczciwie i bez kombinowania. Normalne, ludzkie podejście. Na pewno wrócę.</div><div class="r-author">Robert W.</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Świetny warsztat. Bardzo sprawna wymiana oleju i filtrów – niecałe 40 minut – w miłej atmosferze.</div><div class="r-author">Bartosz W.</div><div class="r-date">7 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Serwisuje tu Kia Stinger i nie mam się do czego przyczepić. Pełen kosztorys z robocizną przed naprawą – zero niespodzianek.</div><div class="r-author">Rafał P.</div><div class="r-date">8 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Najlepsi rzemieślnicy we Wrocławiu. Zrobili szybko i sprawnie, znaleźli problem i go rozwiązali.</div><div class="r-author">Andrey</div><div class="r-date">10 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Szybko znaleźli i rozwiązali problem, czego nie udało się w innych serwisach.</div><div class="r-author">Kolya Y.</div><div class="r-date">8 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Kontakt, terminy, realizacja – wszystko szybko, sprawnie i bezbłędnie!</div><div class="r-author">Ayo</div><div class="r-date">5 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Niezawodny serwis samochodowy. Szybko, profesjonalnie i bezproblemowo. Zdecydowanie polecam!</div><div class="r-author">Karolina S.</div><div class="r-date">3 tygodnie temu</div></div></div>
+  </div>
+  <div class="r-nav">
+    <button class="r-btn" id="r-prev">←</button>
+    <div class="r-dots" id="r-dots"><div class="r-dot"></div><div class="r-dot active"></div><div class="r-dot"></div></div>
+    <button class="r-btn" id="r-next">→</button>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="s-label" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">// Kontakt</div>
+  <h2 class="s-title" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">SKONTAKTUJ<br><span class="r">SIĘ Z NAMI</span></h2>
+  <div class="contact-grid">
+    <div>
+      <div class="c-info-block">
+        <div class="c-label">Adres</div>
+        <div class="c-value">ul. Zenona Miriama Przesmyckiego 25<br>51-151 Wrocław, Psie Pole</div>
+      </div>
+      <div class="c-info-block">
+        <div class="c-label">Godziny Pracy</div>
+        <div class="c-hours">
+          <span class="c-day">Pon – Pt</span><span class="c-time">09:00 – 17:00</span>
+          <span class="c-day">Sob – Nd</span><span class="c-time">Zamknięte</span>
+        </div>
+        <div class="c-note">* W pilnych przypadkach — zadzwoń</div>
+      </div>
+      <div class="c-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2504.1!2d17.0582!3d51.1422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sul.+Przesmyckiego+25+Wroc%C5%82aw!5e0!3m2!1spl!2spl!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="c-map-overlay">
+          <div class="c-pin"></div>
+          <div class="c-pin-label">SAAP Service · ul. Przesmyckiego 25</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="c-cta-desc">Zadzwoń lub napisz na Instagram — odpiszemy tak szybko jak to możliwe. Andrzej i jego zespół czekają na Twoje auto.</p>
+      <div class="c-cards">
+        <a href="tel:+48576196906" class="c-card">
+          <div class="c-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="#8B0000"></path></svg></div>
+          <div class="c-body"><div class="c-lbl">Telefon · Andrzej</div><div class="c-val">576 196 906</div></div>
+          <div class="c-arr">→</div>
+        </a>
+        <a href="tel:+48536760872" class="c-card">
+          <div class="c-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="#8B0000"></path></svg></div>
+          <div class="c-body"><div class="c-lbl">Telefon · Serwis</div><div class="c-val">536 760 872</div></div>
+          <div class="c-arr">→</div>
+        </a>
+        <a href="https://instagram.com/saap_service_team" target="_blank" rel="noopener" class="c-card">
+          <div class="c-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="#8B0000"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></div>
+          <div class="c-body"><div class="c-lbl">Instagram</div><div class="c-val">@saap_service_team</div></div>
+          <div class="c-arr">→</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="f-logo"><img src="assets/images/logo/logo.png" alt="SAAP Service" style="height:24px;" width="90" height="24"></a>
+  <div class="f-copy">© 2025 SAAP Service · NIP: 8952284227 · REGON: 540976763 · Wrocław</div>
+  <div class="f-soc">
+    <a href="https://instagram.com/saap_service_team" target="_blank" rel="noopener" class="f-sl" title="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+    </a>
+    <a href="tel:+48576196906" class="f-sl" title="Telefon">
+      <svg viewBox="0 0 24 24" fill="#8B0000"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"></path></svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+/* ── CURSOR ─────────────────────────────────────────────────── */
+const cur = document.getElementById('cursor');
+let cx = 0, cy = 0, tx = 0, ty = 0;
+if (cur) {
+  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+  (function loop() {
+    cx += (tx - cx) * .14; cy += (ty - cy) * .14;
+    cur.style.left = cx + 'px'; cur.style.top = cy + 'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a,button,.why-card,.t-card,.r-card,.g-item,.c-card,.sv-block').forEach(el => {
+    el.addEventListener('mouseenter', () => cur.classList.add('big'));
+    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+  });
+}
+
+/* ── NAV SCROLL ─────────────────────────────────────────────── */
+window.addEventListener('scroll', () => {
+  const n=document.getElementById('nav'); if(n) n.classList.toggle('sc', scrollY > 60);
+});
+
+/* ── SMOOTH SCROLL (no scrollIntoView) ─────────────────────── */
+function smoothScrollTo(targetY, duration) {
+  const startY = window.scrollY;
+  const diff = targetY - startY;
+  let start;
+  function step(timestamp) {
+    if (!start) start = timestamp;
+    const elapsed = timestamp - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    window.scrollTo(0, startY + diff * ease);
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href === '#') { e.preventDefault(); smoothScrollTo(0, 700); return; }
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      const top = target.offsetTop - 80;
+      smoothScrollTo(top, 700);
+    }
+  });
+});
+const navCta = document.getElementById('nav-cta');
+if (navCta) navCta.addEventListener('click', () => {
+  const c = document.getElementById('contact');
+  if (c) smoothScrollTo(c.offsetTop - 80, 700);
+});
+
+/* ── GSAP ANIMATIONS ────────────────────────────────────────── */
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero entrance
+const tl = gsap.timeline({ delay: .15 });
+tl.to('#h-t',   { clipPath: 'inset(0% 0 0 0)', duration: .9, ease: 'power3.out' })
+  .to('#h-s',   { clipPath: 'inset(0% 0 0 0)', duration: .65, ease: 'power3.out' }, '-=.5')
+  .to('#h-ey',  { opacity: 1, y: 0, duration: .5, ease: 'power2.out' }, '-=.45')
+  .to('#h-bot', { opacity: 1, y: 0, duration: .55, ease: 'power2.out' }, '-=.3');
+
+// Magnetic main button
+const mb = document.getElementById('main-btn');
+if (mb) mb.addEventListener('mousemove', e => {
+  const r = mb.getBoundingClientRect();
+  const dx = e.clientX - (r.left + r.width / 2);
+  const dy = e.clientY - (r.top + r.height / 2);
+  gsap.to(mb, { x: dx * .2, y: dy * .2, duration: .3, ease: 'power2.out' });
+});
+if (mb) mb.addEventListener('mouseleave', () => gsap.to(mb, { x: 0, y: 0, duration: .55, ease: 'elastic.out(1,.5)' }));
+
+// Scroll reveal helper
+function reveal(sel, stagger) {
+  gsap.utils.toArray(sel).forEach((el, i) => {
+    gsap.to(el, {
+      opacity: 1, y: 0, duration: .65, delay: stagger ? i * stagger : 0,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+    });
+  });
+}
+reveal('.s-label'); reveal('.s-title');
+reveal('.a-stat', .08); reveal('.why-card', .07); reveal('.sv-block', .04);
+reveal('.g-item', .04);
+
+// Counter animation
+document.querySelectorAll('.counter').forEach(el => {
+  ScrollTrigger.create({
+    trigger: el, start: 'top 85%', once: true,
+    onEnter: () => gsap.to({ v: 0 }, {
+      v: +el.dataset.target, duration: 2.2, ease: 'power2.out',
+      onUpdate: function () { el.textContent = Math.round(this.targets()[0].v); }
+    })
+  });
+});
+
+/* ── STARS ──────────────────────────────────────────────────── */
+const se = document.getElementById('r-stars');
+if (se) for (let i = 0; i < 5; i++) {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.style.cssText = 'width:16px;height:16px;';
+  svg.innerHTML = `<defs><clipPath id="sc${i}"><rect x="0" y="0" width="0" height="24"/></clipPath></defs>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#222"/>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#8B0000" clip-path="url(#sc${i})"/>`;
+  se.appendChild(svg);
+  ScrollTrigger.create({
+    trigger: se, start: 'top 85%', once: true,
+    onEnter: () => setTimeout(() => gsap.to(svg.querySelector('rect'), { attr: { width: 24 }, duration: .4, ease: 'power2.out' }), i * 120)
+  });
+}
+
+/* ── REVIEWS CAROUSEL ───────────────────────────────────────── */
+const revs = [
+  { t: 'Wszystko elegancko, zmiana kół i sprężyny, chłopaki uwinęli się w pół dnia. Będę odwiedzać.', a: 'Maciej H.', d: 'Miesiąc temu' },
+  { t: 'Pełny profesjonalizm i bardzo szybkie terminy. Uratowali mnie z wymianą opon w ekspresowym terminie.', a: 'Rafał T.', d: '8 miesięcy temu' },
+  { t: 'Bardzo fajny serwis. Wszystko zrobione uczciwie i bez kombinowania. Normalne, ludzkie podejście. Na pewno wrócę.', a: 'Robert W.', d: '' },
+  { t: 'Świetny warsztat. Bardzo sprawna wymiana oleju i filtrów – niecałe 40 minut – w miłej atmosferze.', a: 'Bartosz W.', d: '7 miesięcy temu' },
+  { t: 'Serwisuje tu Kia Stinger i nie mam się do czego przyczepić. Pełen kosztorys z robocizną przed naprawą – zero niespodzianek.', a: 'Rafał P.', d: '8 miesięcy temu' },
+  { t: 'Najlepsi rzemieślnicy we Wrocławiu. Zrobili szybko i sprawnie, znaleźli problem i go rozwiązali.', a: 'Andrey', d: '10 miesięcy temu' },
+  { t: 'Szybko znaleźli i rozwiązali problem, czego nie udało się w innych serwisach.', a: 'Kolya Y.', d: '8 miesięcy temu' },
+  { t: 'Kontakt, terminy, realizacja – wszystko szybko, sprawnie i bezbłędnie!', a: 'Ayo', d: '5 miesięcy temu' },
+  { t: 'Niezawodny serwis samochodowy. Szybko, profesjonalnie i bezproblemowo. Zdecydowanie polecam!', a: 'Karolina S.', d: '3 tygodnie temu' },
+];
+
+const track = document.getElementById('r-track');
+const dotsEl = document.getElementById('r-dots');
+let rIdx = 0, rTimer;
+if (track) track.innerHTML = '';
+if (dotsEl) dotsEl.innerHTML = '';
+
+const VISIBLE = 3;
+
+revs.forEach(rv => {
+  const card = document.createElement('div');
+  card.className = 'r-card';
+  card.innerHTML = `<div class="r-quote">"</div><div class="r-text">${rv.t}</div><div class="r-author">${rv.a}</div>${rv.d ? `<div class="r-date">${rv.d}</div>` : ''}`;
+  track.appendChild(card);
+});
+
+const totalPages = Math.ceil(revs.length / VISIBLE);
+for (let i = 0; i < totalPages; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'r-dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => goTo(i * VISIBLE));
+  dotsEl.appendChild(dot);
+}
+
+function updateDots() {
+  const page = Math.floor(rIdx / VISIBLE);
+  dotsEl.querySelectorAll('.r-dot').forEach((d, i) => d.classList.toggle('active', i === page));
+}
+
+function goTo(idx) {
+  rIdx = Math.max(0, Math.min(idx, revs.length - VISIBLE));
+  const cardW = track.querySelector('.r-card').offsetWidth + 3;
+  track.style.transform = `translateX(-${rIdx * cardW}px)`;
+  updateDots();
+}
+
+const rPrev=document.getElementById('r-prev'); if(rPrev) rPrev.addEventListener('click', () => { goTo(rIdx - VISIBLE); resetTimer(); });
+const rNext=document.getElementById('r-next'); if(rNext) rNext.addEventListener('click', () => { goTo(rIdx + VISIBLE < revs.length ? rIdx + VISIBLE : 0); resetTimer(); });
+
+function resetTimer() {
+  clearInterval(rTimer);
+  rTimer = setInterval(() => { goTo(rIdx + VISIBLE < revs.length ? rIdx + VISIBLE : 0); }, 5000);
+}
+resetTimer();
+
+const tw = document.querySelector('.reviews-track-wrap');
+
+/* ── CENNIK TABS ───────────────────────────────────────────── */
+document.querySelectorAll('.cennik-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.cennik-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.cennik-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    document.querySelectorAll('#tab-' + tab.dataset.tab + ' .cn-card').forEach(card => {
+      gsap.to(card, { opacity: 1, y: 0, duration: .5, ease: 'power2.out', delay: 0 });
+    });
+  });
+});
+reveal('.cn-card', .06);
+
+if (tw) { tw.addEventListener('mouseenter', () => clearInterval(rTimer)); tw.addEventListener('mouseleave', resetTimer); }
+</script>
+
+
+</body></html>
