@@ -19,8 +19,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Space+Mono:wght@400;700&amp;family=Barlow:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <style>
 /* ── RESET & TOKENS ─────────────────────────────────────────── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -41,14 +41,12 @@
   --gray3:#555;
 }
 html{scroll-behavior:smooth;}
-body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;cursor:crosshair;}
 @media(pointer:coarse){body{cursor:auto;}}
 
 
 /* Skip link for accessibility */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
-.skip-link{position:absolute;top:-40px;left:0;background:var(--red);color:var(--white);padding:8px 16px;font-family:'Space Mono',monospace;font-size:12px;z-index:10000;transition:top .3s;}
-.skip-link:focus{top:0;}
 /* Focus styles */
 a:focus-visible,button:focus-visible{outline:2px solid var(--red);outline-offset:2px;}
 /* Reduced motion */
@@ -87,7 +85,7 @@ nav.sc{
 .nlogo .dot{color:var(--red);}
 .nlinks{display:flex;gap:36px;list-style:none;}
 .nlinks a{
-  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2.5px;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2.5px;
   text-transform:uppercase;color:var(--gray);text-decoration:none;
   transition:color .25s;position:relative;
 }
@@ -98,7 +96,7 @@ nav.sc{
 .nlinks a:hover{color:var(--white);}
 .nlinks a:hover::after{width:100%;}
 .ncta{
-  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;
   text-transform:uppercase;font-weight:700;
   background:linear-gradient(135deg,var(--red-bright) 0%,var(--red) 50%,var(--red-dim) 100%);
   color:var(--white);border:none;padding:13px 28px;
@@ -110,6 +108,7 @@ nav.sc{
 .ncta::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:sweep 2.5s ease-in-out infinite;}
 .ncta:hover::after{animation-duration:.9s;}
 @media(max-width:900px){nav,nav.sc{padding:16px 24px;}.nlinks{display:none;}}
+
 
 /* ── BURGER ─────────────────────────────────────────────────── */
 .burger{
@@ -139,15 +138,15 @@ nav.sc{
 .mobile-menu a{
   font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:4px;
   color:var(--white);text-decoration:none;
-  transition:color .2s;opacity:0;transform:translateY(16px);
+  opacity:0;transform:translateY(16px);
   transition:color .2s,opacity .3s,transform .3s;
 }
 .mobile-menu.open a{opacity:1;transform:translateY(0);}
 .mobile-menu a:hover{color:var(--red);}
 .mobile-menu .m-cta{
   margin-top:24px;
-  font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;
-  text-transform:uppercase;font-weight:700;font-size:13px;
+  font-family:'Space Mono',monospace;font-size:13px;letter-spacing:2px;
+  text-transform:uppercase;font-weight:700;
   background:linear-gradient(135deg,var(--red-bright) 0%,var(--red) 50%,var(--red-dim) 100%);
   color:var(--white);padding:16px 40px;
 }
@@ -229,7 +228,7 @@ nav.sc{
 }
 
 .h-eyebrow{
-  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:4px;
   text-transform:uppercase;color:var(--red);
   margin-bottom:24px;
   opacity:0;transform:translateY(10px);
@@ -261,7 +260,7 @@ nav.sc{
 .h-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
 
 .btn-red{
-  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;
   text-transform:uppercase;font-weight:700;
   background:linear-gradient(135deg,var(--red-bright) 0%,var(--red) 50%,var(--red-dim) 100%);
   color:var(--white);padding:15px 36px;text-decoration:none;display:inline-block;
@@ -274,7 +273,7 @@ nav.sc{
 .btn-red:hover::after{animation-duration:.9s;}
 
 .btn-ghost{
-  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;
   text-transform:uppercase;border:1px solid var(--red-border);
   color:var(--gray);padding:15px 36px;text-decoration:none;display:inline-block;
   transition:border-color .3s,color .3s,background .3s;
@@ -283,7 +282,7 @@ nav.sc{
 
 .h-stats{display:flex;gap:44px;flex-wrap:wrap;}
 .h-stat .num{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--red);line-height:1;display:block;}
-.h-stat .lbl{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:2px;display:block;}
+.h-stat .lbl{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:2px;display:block;}
 
 @keyframes sweep{0%{left:-100%;}100%{left:200%;}}
 
@@ -291,7 +290,7 @@ nav.sc{
 #cennik{background:var(--dark);padding:112px 64px;border-top:1px solid var(--red-border);border-bottom:1px solid var(--red-border);}
 @media(max-width:768px){#cennik{padding:80px 24px;}}
 .cennik-tabs{display:flex;gap:4px;margin-bottom:48px;}
-.cennik-tab{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);background:var(--card);border:1px solid var(--gray2);padding:14px 32px;cursor:pointer;transition:all .3s;}
+.cennik-tab{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);background:var(--card);border:1px solid var(--gray2);padding:14px 32px;cursor:pointer;transition:all .3s;}
 @media(pointer:fine){.cennik-tab{}}
 .cennik-tab:hover{color:var(--white);border-color:var(--gray3);}
 .cennik-tab.active{color:var(--white);background:var(--red);border-color:var(--red);}
@@ -308,14 +307,14 @@ nav.sc{
 .cn-row .cn-price{color:var(--white);font-weight:500;white-space:nowrap;text-align:right;}
 .cn-card.cn-full{grid-column:1 / -1;}
 .cn-table{width:100%;border-collapse:collapse;margin-top:8px;}
-.cn-table th{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);text-align:left;padding:10px 12px;border-bottom:1px solid var(--red-border);}
+.cn-table th{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--red);text-align:left;padding:10px 12px;border-bottom:1px solid var(--red-border);}
 .cn-table th:last-child{text-align:right;}
 .cn-table td{font-size:14px;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--gray);font-weight:300;}
 .cn-table td:last-child{color:var(--white);font-weight:500;text-align:right;white-space:nowrap;}
-.cn-note{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-top:16px;padding:14px 16px;background:var(--card2);border-left:2px solid var(--red);font-weight:400;}
+.cn-note{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-top:16px;padding:14px 16px;background:var(--card2);border-left:2px solid var(--red);font-weight:400;}
 .cn-sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px;}
 @media(max-width:768px){.cn-sub-grid{grid-template-columns:1fr;}}
-.cn-sub-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:12px;}
+.cn-sub-title{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:12px;}
 
 /* ── TICKER ────────────────────────────────────────────────── */
 .ticker-wrap{
@@ -329,7 +328,7 @@ nav.sc{
   animation:ticker 28s linear infinite;
 }
 .ticker-item{
-  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:3px;
   text-transform:uppercase;color:var(--white);
   padding:0 48px;display:inline-flex;align-items:center;gap:16px;flex-shrink:0;
 }
@@ -341,7 +340,7 @@ section{padding:112px 64px;}
 @media(max-width:768px){section{padding:80px 24px;}}
 
 .s-label{
-  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:4px;
   text-transform:uppercase;color:var(--red);margin-bottom:14px;
   opacity:0;transform:translateY(10px);
 }
@@ -387,7 +386,7 @@ section{padding:112px 64px;}
 }
 .a-stat .n{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--red);line-height:1;display:block;}
 .a-stat .u{font-family:'Space Mono',monospace;font-size:12px;color:var(--red);}
-.a-stat .l{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:4px;display:block;}
+.a-stat .l{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-top:4px;display:block;}
 
 /* ── WHY ───────────────────────────────────────────────────── */
 #why{background:var(--black);}
@@ -454,10 +453,10 @@ section{padding:112px 64px;}
 }
 .sv-block.rev .sv-info::after{right:auto;left:-10%;}
 /* To adjust any service image crop:
-   Find the <img> inside .sv-img and change object-position.
+   Find the inside .sv-img and change object-position.
    Examples: 'center top' = show top, 'center 30%' = show upper-third,
    'center bottom' = show bottom, '50% 20%' = fine control. */
-.sv-num{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--red);margin-bottom:18px;position:relative;z-index:1;}
+.sv-num{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:4px;color:var(--red);margin-bottom:18px;position:relative;z-index:1;}
 .sv-name{
   font-family:'Bebas Neue',sans-serif;letter-spacing:2px;line-height:.92;
   color:var(--white);margin-bottom:18px;position:relative;z-index:1;
@@ -468,13 +467,13 @@ section{padding:112px 64px;}
 @media(min-width:1100px){.sv-desc{font-size:15px;max-width:520px;}}
 .sv-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px;position:relative;z-index:1;}
 .sv-tag{
-  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;
   text-transform:uppercase;color:var(--red);border:1px solid var(--red-border);
   padding:6px 14px;transition:border-color .2s,background .2s;
 }
 .sv-tag:hover{border-color:var(--red);background:var(--red-glow2);}
 .sv-btn{
-  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2.5px;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2.5px;
   text-transform:uppercase;font-weight:700;
   background:linear-gradient(135deg,var(--red-bright) 0%,var(--red) 50%,var(--red-dim) 100%);
   color:var(--white);padding:13px 28px;text-decoration:none;
@@ -517,30 +516,12 @@ section{padding:112px 64px;}
   position:absolute;bottom:0;left:0;right:0;
   padding:16px 18px 14px;
   background:linear-gradient(transparent,rgba(10,10,10,.85));
-  font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2.5px;
+  font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2.5px;
   text-transform:uppercase;color:var(--red);
   opacity:0;transition:opacity .3s;
 }
 .g-item:hover .g-label{opacity:1;}
 
-/* ── TEAM ──────────────────────────────────────────────────── */
-#team{background:var(--dark);border-top:1px solid var(--red-border);}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
-@media(max-width:900px){.team-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:520px){.team-grid{grid-template-columns:1fr;}}
-.t-card{background:var(--card);border:1px solid var(--red-border);overflow:hidden;opacity:0;transform:translateY(20px);transition:border-color .3s;}
-.t-card:hover{border-color:rgba(139,0,0,.45);}
-.t-photo{
-  height:300px;background:var(--dark);
-  display:flex;align-items:center;justify-content:center;
-  border-bottom:1px solid var(--red-border);overflow:hidden;
-}
-.t-ph{display:flex;flex-direction:column;align-items:center;gap:14px;}
-.t-ph svg{opacity:.1;}
-.t-ph span{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);}
-.t-info{padding:24px 28px;}
-.t-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;color:var(--white);margin-bottom:4px;}
-.t-role{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
 
 /* ── REVIEWS ───────────────────────────────────────────────── */
 #reviews{background:var(--black);border-top:1px solid var(--red-border);border-bottom:1px solid var(--red-border);overflow:hidden;}
@@ -548,7 +529,7 @@ section{padding:112px 64px;}
 .r-rating{text-align:right;}
 .r-score{font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--red);line-height:1;}
 .r-stars{display:flex;gap:4px;margin-top:2px;justify-content:flex-end;}
-.r-source{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:2px;color:var(--gray);margin-top:6px;text-align:right;}
+.r-source{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--gray);margin-top:6px;text-align:right;}
 /* horizontal scroll reviews */
 .reviews-track-wrap{touch-action:pan-y;
   overflow:hidden;position:relative;
@@ -577,8 +558,8 @@ section{padding:112px 64px;}
   font-family:'Bebas Neue',sans-serif;opacity:.4;margin-bottom:8px;
 }
 .r-text{font-size:13px;line-height:1.85;color:#bbb;margin-bottom:24px;font-style:italic;}
-.r-author{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
-.r-date{font-family:'Space Mono',monospace;font-size:8px;color:var(--gray3);margin-top:3px;}
+.r-author{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
+.r-date{font-family:'Space Mono',monospace;font-size:12px;color:var(--gray3);margin-top:3px;}
 .r-nav{display:flex;gap:10px;justify-content:center;margin-top:40px;}
 .r-btn{
   width:48px;height:48px;border:1px solid var(--red-border);
@@ -599,14 +580,14 @@ section{padding:112px 64px;}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
 @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:56px;}}
 .c-info-block{margin-bottom:36px;}
-.c-label{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:3.5px;text-transform:uppercase;color:var(--red);margin-bottom:10px;}
+.c-label{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:3.5px;text-transform:uppercase;color:var(--red);margin-bottom:10px;}
 .c-value{font-size:15px;color:var(--white);line-height:1.7;}
 .c-value a{color:var(--white);text-decoration:none;transition:color .25s;}
 .c-value a:hover{color:var(--red);}
 .c-hours{display:grid;grid-template-columns:auto 1fr;gap:4px 24px;margin-top:6px;}
-.c-day{font-family:'Space Mono',monospace;font-size:10px;color:var(--gray);}
-.c-time{font-family:'Space Mono',monospace;font-size:10px;color:var(--white);}
-.c-note{font-family:'Space Mono',monospace;font-size:7.5px;color:var(--gray3);margin-top:8px;}
+.c-day{font-family:'Space Mono',monospace;font-size:12px;color:var(--gray);}
+.c-time{font-family:'Space Mono',monospace;font-size:12px;color:var(--white);}
+.c-note{font-family:'Space Mono',monospace;font-size:12px;color:var(--gray3);margin-top:8px;}
 .c-map{
   width:100%;height:280px;
   background:var(--card);border:1px solid var(--red-border);
@@ -629,7 +610,7 @@ section{padding:112px 64px;}
 }
 @keyframes pinpulse{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
 @keyframes pinring{0%{transform:scale(1);opacity:1;}100%{transform:scale(2.8);opacity:0;}}
-.c-pin-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--white);}
+.c-pin-label{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--white);}
 
 .c-cta-desc{font-size:15px;line-height:1.85;color:#999;margin-bottom:36px;}
 .c-cards{display:flex;flex-direction:column;gap:3px;}
@@ -650,7 +631,7 @@ section{padding:112px 64px;}
 }
 .c-card:hover .c-icon{border-color:var(--red);}
 .c-body{flex:1;}
-.c-lbl{font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:4px;}
+.c-lbl{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:4px;}
 .c-val{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:var(--white);}
 .c-arr{font-family:'Space Mono',monospace;font-size:16px;color:var(--red);opacity:0;transform:translateX(-8px);transition:opacity .3s,transform .3s;}
 .c-card:hover .c-arr{opacity:1;transform:translateX(0);}
@@ -664,7 +645,7 @@ footer{
 @media(max-width:768px){footer{padding:36px 24px;flex-direction:column;align-items:flex-start;gap:20px;}}
 .f-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:6px;color:var(--white);text-decoration:none;}
 .f-logo .r{color:var(--red);}
-.f-copy{font-family:'Space Mono',monospace;font-size:7.5px;letter-spacing:2px;color:var(--gray);text-transform:uppercase;text-align:center;}
+.f-copy{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--gray);text-transform:uppercase;text-align:center;}
 @media(max-width:768px){.f-copy{text-align:left;}}
 .f-soc{display:flex;gap:8px;}
 .f-sl{
@@ -713,12 +694,12 @@ footer{
 }
 </script>
 </head>
-<body data-cc-id="cc-1" style="cursor: crosshair; font-family: Barlow;">
-<div id="cursor" class="" style="left: 1402px; top: 1.62991e-57px;"></div>
+<body>
+<div id="cursor"></div>
 
 <!-- NAV -->
 <nav id="nav" class="">
-  <a href="#" class="nlogo"><img src="assets/images/logo/logo.png" alt="SAAP Service" style="height:32px;" width="120" height="32"></a>
+  <a href="#" class="nlogo"><img src="assets/images/logo/logo.png" alt="SAAP Service" style="height:32px;" width="120" height="32" loading="eager"></a>
   <ul class="nlinks">
     <li><a href="#about">O Nas</a></li>
     <li><a href="#cennik">Cennik</a></li>
@@ -757,14 +738,14 @@ footer{
   </div>
 
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
-  <div class="h-eyebrow" id="h-ey" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">// Wrocław · ul. Przesmyckiego 25 · Premium Auto Serwis</div>
-  <div class="h-title" id="h-t" style="clip-path: inset(0% 0px 0px);"><img src="assets/images/logo/logo.png" alt="SAAP Service — Premium Serwis Samochodowy Wrocław" style="height:clamp(80px,13vw,180px);" width="748" height="245"></div>
-  <div class="h-sub" id="h-s" style="clip-path: inset(0% 0px 0px);">Mechanika · Diagnostyka · Wulkanizacja</div>
+  <div class="h-eyebrow" id="h-ey">// Wrocław · ul. Przesmyckiego 25 · Premium Auto Serwis</div>
+  <div class="h-title" id="h-t"><img src="assets/images/logo/logo.png" alt="SAAP Service — Premium Serwis Samochodowy Wrocław" style="height:clamp(80px,13vw,180px);" width="748" height="245" loading="eager"></div>
+  <div class="h-sub" id="h-s">Mechanika · Diagnostyka · Wulkanizacja</div>
   </div>
 
-  <div class="h-bottom" id="h-bot" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+  <div class="h-bottom" id="h-bot">
     <div class="h-btns">
-      <a href="tel:+48576196906" class="btn-red" id="main-btn" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">576 196 906</a>
+      <a href="tel:+48576196906" class="btn-red" id="main-btn">576 196 906</a>
       <a href="#contact" class="btn-ghost">Umów Wizytę</a>
     </div>
     <div class="h-stats">
@@ -824,18 +805,18 @@ footer{
         <div class="cn-sub-grid">
           <div>
             <div class="cn-sub-title">Opona na feldze stalowej</div>
-            <div class="cn-table-wrap"><table class="cn-table">
+            <table class="cn-table">
               <thead><tr><th>Rozmiar</th><th>Cena / sztuka</th><th>Cena / komplet</th></tr></thead>
               <tbody>
                 <tr><td>13" – 14"</td><td>25 zł</td><td>100 zł</td></tr>
                 <tr><td>15" – 16"</td><td>30 zł</td><td>120 zł</td></tr>
                 <tr><td>BUS</td><td>70 zł</td><td>280 zł</td></tr>
               </tbody>
-            </table></div>
+            </table>
           </div>
           <div>
             <div class="cn-sub-title">Opona na feldze aluminiowej</div>
-            <div class="cn-table-wrap"><table class="cn-table">
+            <table class="cn-table">
               <thead><tr><th>Rozmiar</th><th>Cena / sztuka</th><th>Cena / komplet</th></tr></thead>
               <tbody>
                 <tr><td>15", 16"</td><td>40 zł</td><td>160 zł</td></tr>
@@ -848,7 +829,7 @@ footer{
                 <tr><td>23"</td><td>100 zł</td><td>400 zł</td></tr>
                 <tr><td>24"</td><td>120 zł</td><td>480 zł</td></tr>
               </tbody>
-            </table></div>
+            </table>
           </div>
         </div>
       </div>
@@ -917,7 +898,7 @@ footer{
       <div class="cn-card" style="display:flex;align-items:center;justify-content:center;padding:24px 32px;">
         <div style="text-align:center;">
           <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--red);margin-bottom:4px;"><span class="cn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#8B0000"> <path d="M12 2L3 6v6c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V6L12 2z"></path> <path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg></span> Gwarancja na wykonane usługi</div>
-          <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);">Pewność · Jakość · Doświadczenie</div>
+          <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);">Pewność · Jakość · Doświadczenie</div>
         </div>
       </div>
     </div>
@@ -957,18 +938,18 @@ footer{
       <div class="about-img-overlay"></div>
     </div>
     <div class="about-content">
-      <div class="s-label" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">// Nasza Filozofia</div>
-      <h2 class="s-title" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">BEZ<br><span class="r">KOMPROMISÓW</span></h2>
+      <div class="s-label">// Nasza Filozofia</div>
+      <h2 class="s-title">BEZ<br><span class="r">KOMPROMISÓW</span></h2>
       <div class="about-body">
         <p><strong>SAAP Service to nie zwykły warsztat.</strong> To miejsce, gdzie każde auto traktowane jest jak własne. Andrzej i jego zespół to mechanicy z krwi i kości — pasja do motoryzacji widać w każdym szczególe.</p>
         <p>Pełna transparentność kosztów przed naprawą. Bez niespodzianek przy odbiorze. Szybka komunikacja, realne terminy.</p>
         <p>BMW M3, Audi RS3, Kia Stinger, Mercedes G63, Lancia Delta — każde auto zasługuje na tę samą uwagę i precyzję.</p>
       </div>
       <div class="about-stats">
-        <div class="a-stat" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><span class="n counter" data-target="5">5</span><span class="l">Lat na rynku</span></div>
-        <div class="a-stat" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><span class="n counter" data-target="200">200</span><span class="l">Projektów rocznie</span></div>
-        <div class="a-stat" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><span class="n counter" data-target="5">5</span><span class="l">Gwiazdki Google</span></div>
-        <div class="a-stat" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;"><span class="n counter" data-target="100">100</span><span class="u">%</span><span class="l">Transparentna wycena</span></div>
+        <div class="a-stat"><span class="n counter" data-target="5">5</span><span class="l">Lat na rynku</span></div>
+        <div class="a-stat"><span class="n counter" data-target="200">200</span><span class="l">Projektów rocznie</span></div>
+        <div class="a-stat"><span class="n counter" data-target="5">5</span><span class="l">Gwiazdki Google</span></div>
+        <div class="a-stat"><span class="n counter" data-target="100">100</span><span class="u">%</span><span class="l">Transparentna wycena</span></div>
       </div>
     </div>
   </div>
@@ -976,45 +957,45 @@ footer{
 
 <!-- WHY -->
 <section id="why">
-  <div class="s-label" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">// Dlaczego My</div>
-  <h2 class="s-title" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">CO NAS<br><span class="r">WYRÓŻNIA</span></h2>
+  <div class="s-label">// Dlaczego My</div>
+  <h2 class="s-title">CO NAS<br><span class="r">WYRÓŻNIA</span></h2>
   <div class="why-grid">
-    <div class="why-card" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="why-card">
       <div class="why-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none"><rect x="6" y="3" width="20" height="26" rx="2" fill="#8B0000"></rect><rect x="9" y="9" width="14" height="1.8" rx="0.9" fill="white"></rect><rect x="9" y="14" width="14" height="1.8" rx="0.9" fill="white"></rect><rect x="9" y="19" width="9" height="1.8" rx="0.9" fill="white"></rect><path d="M6 29l2.5-2.5L11 29l2.5-2.5L16 29l2.5-2.5L21 29l2.5-2.5L26 29V3" stroke="#8B0000" stroke-width="1.2" fill="none"></path><circle cx="27" cy="27" r="6" fill="#8B0000"></circle><path d="M24.2 27l2 2 3.8-3.8" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       </div>
       <div class="why-h">Pełna Transparentność</div>
       <div class="why-p">Szczegółowy kosztorys z wyszczególnieniem części i robocizny — zawsze przed rozpoczęciem prac. Ostateczna kwota nie odbiega od wyceny.</div>
     </div>
-    <div class="why-card" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="why-card">
       <div class="why-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none"><path d="M21 2L7 20h12l-2 14 16-20H21L21 2z" fill="#8B0000"></path></svg>
       </div>
       <div class="why-h">Ekspresowe Terminy</div>
       <div class="why-p">Wymiana kół w pół dnia, serwis olejowy od 40 minut. Realizujemy również zlecenia pilne — poza standardowymi godzinami pracy.</div>
     </div>
-    <div class="why-card" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="why-card">
       <div class="why-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none"><circle cx="15" cy="15" r="11" fill="#8B0000"></circle><circle cx="15" cy="15" r="7.5" fill="white" opacity="0.12"></circle><path d="M11.5 15h7M15 11.5v7" stroke="white" stroke-width="2.2" stroke-linecap="round"></path><path d="M23 23L31.5 31.5" stroke="#8B0000" stroke-width="3.5" stroke-linecap="round"></path></svg>
       </div>
       <div class="why-h">Precyzyjna Diagnostyka</div>
       <div class="why-p">Lokalizujemy usterki, z którymi nie radzą sobie inne warsztaty. Profesjonalny sprzęt diagnostyczny i wieloletnie doświadczenie mechaników.</div>
     </div>
-    <div class="why-card" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="why-card">
       <div class="why-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none"><rect x="9" y="3" width="13" height="22" rx="2.5" fill="#8B0000"></rect><rect x="12" y="5.5" width="7" height="14" rx="1" fill="white" opacity="0.15"></rect><circle cx="15.5" cy="22" r="1.2" fill="white"></circle><path d="M24.5 11c2 1.8 3.2 4.3 3.2 7s-1.2 5.2-3.2 7" stroke="#8B0000" stroke-width="2.2" stroke-linecap="round"></path><path d="M27.5 8c3.2 2.8 5 6.7 5 10s-1.8 7.2-5 10" stroke="#8B0000" stroke-width="2" stroke-linecap="round" opacity="0.5"></path></svg>
       </div>
       <div class="why-h">Szybki Kontakt</div>
       <div class="why-p">Bezpośrednia komunikacja z mechanikiem. Wycena online, rezerwacja terminu bez kolejki — odpowiadamy w ciągu kilku godzin.</div>
     </div>
-    <div class="why-card" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="why-card">
       <div class="why-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="#8B0000"><path d="M2 22 Q2 20 4 20 L7 20 L11 14 Q13 12 16 12 L22 12 Q25 12 27 14 L30 18 L32 18 Q34 18 34 20 L34 22 Z"></path><path d="M14 20 L16 14.5 L21 14.5 L24.5 20 Z" fill="white" opacity="0.2"></path><circle cx="27" cy="22" r="4" fill="white"></circle><circle cx="9" cy="22" r="4" fill="white"></circle><circle cx="27" cy="22" r="3.5" fill="#8B0000"></circle><circle cx="27" cy="22" r="1.8" fill="white" opacity="0.15"></circle><circle cx="27" cy="22" r="0.8" fill="#8B0000"></circle><circle cx="9" cy="22" r="3.5" fill="#8B0000"></circle><circle cx="9" cy="22" r="1.8" fill="white" opacity="0.15"></circle><circle cx="9" cy="22" r="0.8" fill="#8B0000"></circle><line x1="1" y1="16" x2="5" y2="16" stroke="#8B0000" stroke-width="1.4" stroke-linecap="round"></line><line x1="1" y1="19" x2="4" y2="19" stroke="#8B0000" stroke-width="1" stroke-linecap="round" opacity="0.5"></line></svg>
       </div>
       <div class="why-h">Specjalizacja Premium</div>
       <div class="why-p">Obsługujemy pojazdy wszystkich marek — od aut miejskich po samochody sportowe i premium. Każde zlecenie traktujemy z jednakową precyzją.</div>
     </div>
-    <div class="why-card" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="why-card">
       <div class="why-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none"><path d="M11 5h14v12a7 7 0 01-14 0V5z" fill="#8B0000"></path><path d="M11 8H7a4 4 0 004 4" stroke="#8B0000" stroke-width="2" stroke-linecap="round" fill="none"></path><path d="M25 8h4a4 4 0 01-4 4" stroke="#8B0000" stroke-width="2" stroke-linecap="round" fill="none"></path><path d="M18 24v5" stroke="#8B0000" stroke-width="2" stroke-linecap="round"></path><rect x="12" y="29" width="12" height="2.5" rx="1.2" fill="#8B0000"></rect><path d="M14 13l2.5 2.5 5.5-5.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       </div>
@@ -1026,136 +1007,136 @@ footer{
 
 <!-- SERVICES -->
 <section id="services">
-  <div class="s-label" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">// Co Robimy</div>
-  <h2 class="s-title" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">NASZE<br><span class="r">USŁUGI</span></h2>
+  <div class="s-label">// Co Robimy</div>
+  <h2 class="s-title">NASZE<br><span class="r">USŁUGI</span></h2>
 
-  <div class="sv-block" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+  <div class="sv-block">
     <div class="sv-img"><img src="assets/images/services/cupra-diagnostyka.jpg" alt="Diagnostyka komputerowa samochodu w serwisie SAAP Service Wrocław" loading="lazy" width="800" height="600"></div>
     <div class="sv-info">
       <div class="sv-num">01 — Diagnostyka</div>
       <div class="sv-name">Diagnostyka<br>Komputerowa</div>
       <div class="sv-desc">Pełna diagnostyka silnika, elektryki i układów sterowania. Kasujemy kody błędów, czytamy parametry na żywo — wykrywamy usterki których inne serwisy nie znajdą.</div>
       <div class="sv-tags"><span class="sv-tag">Silnik</span><span class="sv-tag">OBD</span><span class="sv-tag">Elektryka</span><span class="sv-tag">Wszystkie Marki</span></div>
-      <a href="tel:+48576196906" class="sv-btn">→ Umów Diagnostykę</a>
+      <a href="#contact" class="sv-btn" data-tel="+48576196906">→ Umów Diagnostykę</a>
     </div>
   </div>
 
-  <div class="sv-block rev" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+  <div class="sv-block rev">
     <div class="sv-img"><img src="assets/images/services/silnik-lancuch.jpg" alt="Naprawa mechaniczna silnika — wymiana łańcucha rozrządu Wrocław" loading="lazy" width="800" height="600"></div>
     <div class="sv-info">
       <div class="sv-num">02 — Mechanika</div>
       <div class="sv-name">Mechanika<br>Samochodowa</div>
       <div class="sv-desc">Kompleksowe naprawy mechaniczne: silnik, skrzynia biegów, rozrząd, układ kierowniczy i zawieszenie. Od wymiany oleju po pełny remont jednostki napędowej.</div>
       <div class="sv-tags"><span class="sv-tag">Silnik</span><span class="sv-tag">Zawieszenie</span><span class="sv-tag">Rozrząd</span><span class="sv-tag">Układ Kierowniczy</span></div>
-      <a href="tel:+48576196906" class="sv-btn">→ Umów Naprawę</a>
+      <a href="#contact" class="sv-btn" data-tel="+48576196906">→ Umów Naprawę</a>
     </div>
   </div>
 
-  <div class="sv-block" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+  <div class="sv-block">
     <div class="sv-img"><img src="assets/images/services/hamulce-zolte.jpg" alt="Wymiana klocków i tarcz hamulcowych w SAAP Service Wrocław" loading="lazy" width="800" height="600" style="object-position:center bottom;"></div>
     <div class="sv-info">
       <div class="sv-num">03 — Hamulce</div>
       <div class="sv-name">Naprawa<br>Hamulców</div>
       <div class="sv-desc">Wymiana klocków, tarcz, zacisków. Sportowe zestawy hamulcowe — Zimmermann, Brembo. Pełna regeneracja układu hamulcowego dla każdej marki.</div>
       <div class="sv-tags"><span class="sv-tag">Klocki</span><span class="sv-tag">Tarcze</span><span class="sv-tag">Zaciski</span><span class="sv-tag">Sport</span></div>
-      <a href="tel:+48576196906" class="sv-btn">→ Umów Naprawę</a>
+      <a href="#contact" class="sv-btn" data-tel="+48576196906">→ Umów Naprawę</a>
     </div>
   </div>
 
-  <div class="sv-block rev" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+  <div class="sv-block rev">
     <div class="sv-img"><img src="assets/images/gallery/audi-rs3-lift.jpg" alt="Wulkanizacja i wymiana opon — Audi RS3 na podnośniku" loading="lazy" width="800" height="600" style="object-position:center bottom;"></div>
     <div class="sv-info">
       <div class="sv-num">04 — Wulkanizacja</div>
       <div class="sv-name">Wulkanizacja<br>&amp; Koła</div>
       <div class="sv-desc">Wymiana i wyważanie opon, montaż felg sportowych. Zmiana sprężyn i zestawów kół. Robimy to w pół dnia — nawet w ostatniej chwili.</div>
       <div class="sv-tags"><span class="sv-tag">Opony</span><span class="sv-tag">Felgi</span><span class="sv-tag">Wyważanie</span><span class="sv-tag">Sprężyny</span></div>
-      <a href="tel:+48576196906" class="sv-btn">→ Umów Wymianę</a>
+      <a href="#contact" class="sv-btn" data-tel="+48576196906">→ Umów Wymianę</a>
     </div>
   </div>
 
-  <div class="sv-block" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+  <div class="sv-block">
     <div class="sv-img"><img src="assets/images/services/detailing-bmw-smerf.jpg" alt="Detailing samochodowy BMW — profesjonalna pielęgnacja lakieru" loading="lazy" width="800" height="600" style="object-position:center 70%;"></div>
     <div class="sv-info">
       <div class="sv-num">05 — Detailing</div>
       <div class="sv-name">Detailing<br>Samochodu</div>
       <div class="sv-desc">Profesjonalne czyszczenie i pielęgnacja nadwozia i wnętrza. Twoje auto wyjeżdża w stanie lepszym niż przyjechało — każdy detal dopracowany do perfekcji.</div>
       <div class="sv-tags"><span class="sv-tag">Detailing</span><span class="sv-tag">Wnętrze</span><span class="sv-tag">Pielęgnacja</span></div>
-      <a href="tel:+48576196906" class="sv-btn">→ Umów Detailing</a>
+      <a href="#contact" class="sv-btn" data-tel="+48576196906">→ Umów Detailing</a>
     </div>
   </div>
 
-  <div class="sv-block rev" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+  <div class="sv-block rev">
     <div class="sv-img"><img src="assets/images/services/mercedes-diag.jpg" alt="Diagnostyka i naprawa elektryki samochodowej Mercedes" loading="lazy" width="800" height="600"></div>
     <div class="sv-info">
       <div class="sv-num">06 — Elektryka</div>
       <div class="sv-name">Elektryka<br>Samochodowa</div>
       <div class="sv-desc">Naprawa szyb elektrycznych, lusterek, instalacji elektrycznej. Wymiana wycieraczek i filtrów kabinowych. Diagnostyka układów elektrycznych.</div>
       <div class="sv-tags"><span class="sv-tag">Szyby</span><span class="sv-tag">Lusterka</span><span class="sv-tag">Wycieraczki</span><span class="sv-tag">Filtry</span></div>
-      <a href="tel:+48576196906" class="sv-btn">→ Umów Naprawę</a>
+      <a href="#contact" class="sv-btn" data-tel="+48576196906">→ Umów Naprawę</a>
     </div>
   </div>
 
-  <div class="sv-block" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+  <div class="sv-block">
     <div class="sv-img"><img src="assets/images/gallery/lancia-martini.jpg" alt="Naprawa nadwozia i blacharstwo — Lancia Delta Martini Racing" loading="lazy" width="800" height="600"></div>
     <div class="sv-info">
       <div class="sv-num">07 — Nadwozie</div>
       <div class="sv-name">Naprawa<br>Nadwozia</div>
       <div class="sv-desc">Naprawy karoserii i elementów nadwozia. Przywracamy auta do stanu fabrycznego po kolizjach i uszkodzeniach mechanicznych.</div>
       <div class="sv-tags"><span class="sv-tag">Karoseria</span><span class="sv-tag">Kolizje</span><span class="sv-tag">Blacharstwo</span></div>
-      <a href="tel:+48576196906" class="sv-btn">→ Umów Wycenę</a>
+      <a href="#contact" class="sv-btn" data-tel="+48576196906">→ Umów Wycenę</a>
     </div>
   </div>
 
-  <div class="sv-block rev" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+  <div class="sv-block rev">
     <div class="sv-img"><img src="assets/images/services/bmw-diag-tablet.jpg" alt="Diagnostyka samochodowa z użyciem tabletu OBD Wrocław" loading="lazy" width="800" height="600"></div>
     <div class="sv-info">
       <div class="sv-num">08 — Pozostałe</div>
       <div class="sv-name">Pozostałe<br>Usługi</div>
       <div class="sv-desc">Pełna obsługa serwisowa w jednym miejscu. Wymiana oleju, przeglądy, filtry, konsultacje. Masz inny problem? Zadzwoń — znajdziemy rozwiązanie.</div>
       <div class="sv-tags"><span class="sv-tag">Wymiana Oleju</span><span class="sv-tag">Przegląd</span><span class="sv-tag">Filtry</span><span class="sv-tag">Konsultacje</span></div>
-      <a href="tel:+48576196906" class="sv-btn">→ Zadzwoń</a>
+      <a href="#contact" class="sv-btn" data-tel="+48576196906">→ Zadzwoń</a>
     </div>
   </div>
 </section>
 
 <!-- GALLERY -->
 <section id="gallery">
-  <div class="s-label" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">// Realizacje</div>
-  <h2 class="s-title" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">NASZE<br><span class="r">REALIZACJE</span></h2>
+  <div class="s-label">// Realizacje</div>
+  <h2 class="s-title">NASZE<br><span class="r">REALIZACJE</span></h2>
   <div class="gallery-mosaic">
-    <div class="g-item featured" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="g-item featured">
       <img src="assets/images/gallery/mercedes-g63-warsztat.jpg" alt="Mercedes G63 AMG — serwis i obsługa w SAAP Service Wrocław" loading="lazy" width="800" height="600">
       <div class="g-label">Mercedes G63 · Serwis</div>
     </div>
-    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="g-item">
       <img src="assets/images/gallery/kia-stinger-lift.jpg" alt="Kia Stinger — przegląd i serwis na podnośniku" loading="lazy" width="800" height="600">
       <div class="g-label">Kia Stinger · Serwis</div>
     </div>
-    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="g-item">
       <img src="assets/images/gallery/bmw-pink-touring.jpg" alt="BMW M3 Touring — detailing i obsługa serwisowa" loading="lazy" width="800" height="600">
       <div class="g-label">BMW M3 Touring</div>
     </div>
-    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="g-item">
       <img src="assets/images/gallery/bmw-m2-smerf-warsztat.jpg" alt="BMW M2 — naprawa i serwis w warsztacie SAAP" loading="lazy" width="800" height="600">
       <div class="g-label">BMW M2 · D2 Smerf</div>
     </div>
-    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="g-item">
       <img src="assets/images/gallery/volvo-lift.jpg" alt="Volvo — diagnostyka i naprawa zawieszenia" loading="lazy" width="800" height="600">
       <div class="g-label">Volvo · Serwis</div>
     </div>
-    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="g-item">
       <img src="assets/images/gallery/alfa-romeo.jpg" alt="Alfa Romeo — serwis mechaniczny Wrocław" loading="lazy" width="800" height="600">
       <div class="g-label">Alfa Romeo · Klasyk</div>
     </div>
-    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="g-item">
       <img src="assets/images/gallery/dodge-ram.jpg" alt="Dodge RAM — obsługa serwisowa aut amerykańskich" loading="lazy" width="800" height="600">
       <div class="g-label">Dodge RAM 1500</div>
     </div>
-    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="g-item">
       <img src="assets/images/gallery/bmw-white-taillights.jpg" alt="BMW — naprawa elektryki i oświetlenia" loading="lazy" width="800" height="600">
       <div class="g-label">BMW · Serwis</div>
     </div>
-    <div class="g-item" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+    <div class="g-item">
       <img src="assets/images/gallery/bmw-2series.jpg" alt="BMW Seria 2 — kompleksowy serwis samochodowy" loading="lazy" width="800" height="600">
       <div class="g-label">BMW 2 Series</div>
     </div>
@@ -1166,27 +1147,17 @@ footer{
 <section id="reviews">
   <div class="reviews-head">
     <div>
-      <div class="s-label" style="opacity: 1; transform: translate(0px, 0px); translate: none; rotate: none; scale: none;">// Opinie Klientów</div>
-      <h2 class="s-title" style="opacity: 1; transform: translate(0px, 0px); margin-bottom: 0px; translate: none; rotate: none; scale: none;">MÓWIĄ<br><span class="r">O NAS</span></h2>
+      <div class="s-label">// Opinie Klientów</div>
+      <h2 class="s-title" style="margin-bottom: 0px">MÓWIĄ<br><span class="r">O NAS</span></h2>
     </div>
     <div class="r-rating">
       <div class="r-score">5.0</div>
-      <div class="r-stars" id="r-stars"><svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><defs><clipPath id="sc0"><rect x="0" y="0" width="24" height="24"></rect></clipPath></defs>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#222"></path>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#8B0000" clip-path="url(#sc0)"></path></svg><svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><defs><clipPath id="sc1"><rect x="0" y="0" width="24" height="24"></rect></clipPath></defs>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#222"></path>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#8B0000" clip-path="url(#sc1)"></path></svg><svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><defs><clipPath id="sc2"><rect x="0" y="0" width="24" height="24"></rect></clipPath></defs>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#222"></path>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#8B0000" clip-path="url(#sc2)"></path></svg><svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><defs><clipPath id="sc3"><rect x="0" y="0" width="24" height="24"></rect></clipPath></defs>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#222"></path>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#8B0000" clip-path="url(#sc3)"></path></svg><svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><defs><clipPath id="sc4"><rect x="0" y="0" width="24" height="24"></rect></clipPath></defs>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#222"></path>
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#8B0000" clip-path="url(#sc4)"></path></svg></div>
+      <div class="r-stars" id="r-stars"></div>
       <div class="r-source">Google Maps · 13+ opinii</div>
     </div>
   </div>
   <div class="reviews-track-wrap">
-    <div class="reviews-track" id="r-track" style="transform: translateX(-1089px);"><div class="r-card"><div class="r-quote">"</div><div class="r-text">Wszystko elegancko, zmiana kół i sprężyny, chłopaki uwinęli się w pół dnia. Będę odwiedzać.</div><div class="r-author">Maciej H.</div><div class="r-date">Miesiąc temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Pełny profesjonalizm i bardzo szybkie terminy. Uratowali mnie z wymianą opon w ekspresowym terminie.</div><div class="r-author">Rafał T.</div><div class="r-date">8 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Bardzo fajny serwis. Wszystko zrobione uczciwie i bez kombinowania. Normalne, ludzkie podejście. Na pewno wrócę.</div><div class="r-author">Robert W.</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Świetny warsztat. Bardzo sprawna wymiana oleju i filtrów – niecałe 40 minut – w miłej atmosferze.</div><div class="r-author">Bartosz W.</div><div class="r-date">7 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Serwisuje tu Kia Stinger i nie mam się do czego przyczepić. Pełen kosztorys z robocizną przed naprawą – zero niespodzianek.</div><div class="r-author">Rafał P.</div><div class="r-date">8 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Najlepsi rzemieślnicy we Wrocławiu. Zrobili szybko i sprawnie, znaleźli problem i go rozwiązali.</div><div class="r-author">Andrey</div><div class="r-date">10 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Szybko znaleźli i rozwiązali problem, czego nie udało się w innych serwisach.</div><div class="r-author">Kolya Y.</div><div class="r-date">8 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Kontakt, terminy, realizacja – wszystko szybko, sprawnie i bezbłędnie!</div><div class="r-author">Ayo</div><div class="r-date">5 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Niezawodny serwis samochodowy. Szybko, profesjonalnie i bezproblemowo. Zdecydowanie polecam!</div><div class="r-author">Karolina S.</div><div class="r-date">3 tygodnie temu</div></div></div>
+    <div class="reviews-track" id="r-track" style="transform: translateX(-1089px)"><div class="r-card"><div class="r-quote">"</div><div class="r-text">Wszystko elegancko, zmiana kół i sprężyny, chłopaki uwinęli się w pół dnia. Będę odwiedzać.</div><div class="r-author">Maciej H.</div><div class="r-date">Miesiąc temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Pełny profesjonalizm i bardzo szybkie terminy. Uratowali mnie z wymianą opon w ekspresowym terminie.</div><div class="r-author">Rafał T.</div><div class="r-date">8 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Bardzo fajny serwis. Wszystko zrobione uczciwie i bez kombinowania. Normalne, ludzkie podejście. Na pewno wrócę.</div><div class="r-author">Robert W.</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Świetny warsztat. Bardzo sprawna wymiana oleju i filtrów – niecałe 40 minut – w miłej atmosferze.</div><div class="r-author">Bartosz W.</div><div class="r-date">7 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Serwisuje tu Kia Stinger i nie mam się do czego przyczepić. Pełen kosztorys z robocizną przed naprawą – zero niespodzianek.</div><div class="r-author">Rafał P.</div><div class="r-date">8 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Najlepsi rzemieślnicy we Wrocławiu. Zrobili szybko i sprawnie, znaleźli problem i go rozwiązali.</div><div class="r-author">Andrey</div><div class="r-date">10 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Szybko znaleźli i rozwiązali problem, czego nie udało się w innych serwisach.</div><div class="r-author">Kolya Y.</div><div class="r-date">8 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Kontakt, terminy, realizacja – wszystko szybko, sprawnie i bezbłędnie!</div><div class="r-author">Ayo</div><div class="r-date">5 miesięcy temu</div></div><div class="r-card"><div class="r-quote">"</div><div class="r-text">Niezawodny serwis samochodowy. Szybko, profesjonalnie i bezproblemowo. Zdecydowanie polecam!</div><div class="r-author">Karolina S.</div><div class="r-date">3 tygodnie temu</div></div></div>
   </div>
   <div class="r-nav">
     <button class="r-btn" id="r-prev">←</button>
@@ -1197,8 +1168,8 @@ footer{
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="s-label" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">// Kontakt</div>
-  <h2 class="s-title" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">SKONTAKTUJ<br><span class="r">SIĘ Z NAMI</span></h2>
+  <div class="s-label">// Kontakt</div>
+  <h2 class="s-title">SKONTAKTUJ<br><span class="r">SIĘ Z NAMI</span></h2>
   <div class="contact-grid">
     <div>
       <div class="c-info-block">
@@ -1248,8 +1219,8 @@ footer{
 
 <!-- FOOTER -->
 <footer>
-  <a href="#" class="f-logo"><img src="assets/images/logo/logo.png" alt="SAAP Service" style="height:24px;" width="90" height="24"></a>
-  <div class="f-copy">© 2026 SAAP Service · NIP: 8952284227 · REGON: 540976763 · Wrocław</div>
+  <a href="#" class="f-logo"><img src="assets/images/logo/logo.png" alt="SAAP Service" style="height:24px;" width="90" height="24" loading="lazy"></a>
+  <div class="f-copy">© 2025 SAAP Service · NIP: 8952284227 · REGON: 540976763 · Wrocław</div>
   <div class="f-soc">
     <a href="https://instagram.com/saap_service_team" target="_blank" rel="noopener" class="f-sl" title="Instagram">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
@@ -1261,6 +1232,8 @@ footer{
 </footer>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+
 /* ── CURSOR ─────────────────────────────────────────────────── */
 const cur = document.getElementById('cursor');
 let cx = 0, cy = 0, tx = 0, ty = 0;
@@ -1309,11 +1282,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
-const navCta = document.getElementById('nav-cta');
-if (navCta) navCta.addEventListener('click', () => {
-  const c = document.getElementById('contact');
-  if (c) smoothScrollTo(c.offsetTop - 80, 700);
-});
+
 
 /* ── GSAP ANIMATIONS ────────────────────────────────────────── */
 gsap.registerPlugin(ScrollTrigger);
@@ -1391,7 +1360,8 @@ const revs = [
 
 const track = document.getElementById('r-track');
 const dotsEl = document.getElementById('r-dots');
-let rIdx = 0, rTimer;
+let rIdx = 0;
+let rTimer;
 if (track) track.innerHTML = '';
 if (dotsEl) dotsEl.innerHTML = '';
 
@@ -1449,6 +1419,23 @@ document.querySelectorAll('.cennik-tab').forEach(tab => {
 });
 reveal('.cn-card', .06);
 
+if (tw) { tw.addEventListener('mouseenter', () => clearInterval(rTimer)); tw.addEventListener('mouseleave', resetTimer); }
+
+/* ── SV-BTN: desktop → #contact, mobile → tel: ─────────────── */
+document.querySelectorAll('.sv-btn[data-tel]').forEach(btn => {
+  btn.addEventListener('click', e => {
+    if (window.innerWidth >= 900) {
+      e.preventDefault();
+      const contact = document.getElementById('contact');
+      if (contact) smoothScrollTo(contact.offsetTop - 80, 700);
+    } else {
+      e.preventDefault();
+      window.location.href = 'tel:' + btn.dataset.tel;
+    }
+  });
+});
+
+
 /* ── BURGER MENU ────────────────────────────────────────────── */
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -1473,12 +1460,11 @@ if (burger) burger.addEventListener('click', () => {
   burger.classList.contains('open') ? closeMenu() : openMenu();
 });
 mLinks.forEach(a => {
-  a.addEventListener('click', () => {
-    closeMenu();
-  });
+  a.addEventListener('click', () => { closeMenu(); });
 });
 
-if (tw) { tw.addEventListener('mouseenter', () => clearInterval(rTimer)); tw.addEventListener('mouseleave', resetTimer); }
+
+});
 </script>
 
 
